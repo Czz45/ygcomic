@@ -1,7 +1,7 @@
 {
-  "version": "0.1.9",
-  "code": 9,
-  "notes": "导入界面重做+快速分类前置，PDF实时读取秒级导入，阅读器上方留白修复，图片比例锁死",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.9-20261116/YGComic-v0.1.9-debug.apk",
+  "version": "0.1.10",
+  "code": 10,
+  "notes": "修复PDF导入后书架看不到书，顶部留白/自定义分类名/一键按类型选择/文件夹长按重命名删除",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.10-20261116/YGComic-v0.1.10-debug.apk",
   "sizeMb": 23.2
 }
