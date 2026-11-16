@@ -1,7 +1,7 @@
 {
-  "version": "0.1.6",
-  "code": 6,
-  "notes": "界面大改版：KernelSU 风格 Monet 蓝色动态配色 + 大标题无顶栏布局",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.6-20261116/YGComic-v0.1.6-debug.apk",
-  "sizeMb": 23.0
+  "version": "0.1.7",
+  "code": 7,
+  "notes": "返回逻辑修复 + 界面改为真正的 Miuix 风格（原生蓝白配色 + preference 组件）",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.7-20261116/YGComic-v0.1.7-debug.apk",
+  "sizeMb": 23.2
 }
