@@ -1,7 +1,7 @@
 {
-  "version": "0.1.7",
-  "code": 7,
-  "notes": "返回逻辑修复 + 界面改为真正的 Miuix 风格（原生蓝白配色 + preference 组件）",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.7-20261116/YGComic-v0.1.7-debug.apk",
+  "version": "0.1.8",
+  "code": 8,
+  "notes": "书架封面/进度优化，底部Tab重做，阅读器图片不裁切+进度拖动+上一本下一本",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.8-20261116/YGComic-v0.1.8-debug.apk",
   "sizeMb": 23.2
 }
