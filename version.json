@@ -1,7 +1,7 @@
 {
-  "version": "0.1.19",
-  "code": 19,
-  "notes": "修复进入阅读器状态栏跳动；新增TXT小说支持(编码自动识别/分页阅读/上一本下一本)",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.19-20261116/YGComic-v0.1.19-debug.apk",
-  "sizeMb": 23.2
+  "version": "0.1.20",
+  "code": 20,
+  "notes": "小说阅读器独立设置(字体/字号/行距/字距/段距/边距/缩进/自动分段/背景)+章节自动识别与章节跳转",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.20-20261116/YGComic-v0.1.20-debug.apk",
+  "sizeMb": 23.3
 }
