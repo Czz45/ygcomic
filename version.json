@@ -1,7 +1,7 @@
 {
-  "version": "0.1.10",
-  "code": 10,
-  "notes": "修复PDF导入后书架看不到书，顶部留白/自定义分类名/一键按类型选择/文件夹长按重命名删除",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.10-20261116/YGComic-v0.1.10-debug.apk",
+  "version": "0.1.11",
+  "code": 11,
+  "notes": "分类弹窗改为居中卡片不再叠加、按钮改浅灰取消+蓝色确定并排、PDF探测显示真实页数、PDF导入异常不再静默删书",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.11-20261116/YGComic-v0.1.11-debug.apk",
   "sizeMb": 23.2
 }
