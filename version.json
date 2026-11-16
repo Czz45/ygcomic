@@ -1,7 +1,7 @@
 {
-  "version": "0.1.16",
-  "code": 16,
-  "notes": "阅读页进出改纯淡入，背后书架页不再变动；文件夹卡片去掉圆角底框",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.16-20261116/YGComic-v0.1.16-debug.apk",
+  "version": "0.1.17",
+  "code": 17,
+  "notes": "所有界面切换加放大淡入过渡、退出页不位移；书架书卡片去掉圆角底框与文件夹卡片统一",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.17-20261116/YGComic-v0.1.17-debug.apk",
   "sizeMb": 23.2
 }
