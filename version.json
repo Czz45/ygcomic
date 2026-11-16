@@ -1,7 +1,7 @@
 {
-  "version": "0.1.17",
-  "code": 17,
-  "notes": "所有界面切换加放大淡入过渡、退出页不位移；书架书卡片去掉圆角底框与文件夹卡片统一",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.17-20261116/YGComic-v0.1.17-debug.apk",
+  "version": "0.1.18",
+  "code": 18,
+  "notes": "修复文件夹内点漫画返回后布局回跳；书卡片已读未读高度统一",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.18-20261116/YGComic-v0.1.18-debug.apk",
   "sizeMb": 23.2
 }
