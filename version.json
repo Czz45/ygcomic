@@ -1,7 +1,7 @@
 {
-  "version": "0.1.5",
-  "code": 5,
-  "notes": "修复更新检测网络错误：改用 CDN 清单+代理镜像，显示真实错误原因",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.5-20261116/YGComic-v0.1.5-debug.apk",
-  "sizeMb": 22.8
+  "version": "0.1.6",
+  "code": 6,
+  "notes": "界面大改版：KernelSU 风格 Monet 蓝色动态配色 + 大标题无顶栏布局",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.6-20261116/YGComic-v0.1.6-debug.apk",
+  "sizeMb": 23.0
 }
