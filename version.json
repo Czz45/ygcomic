@@ -1,0 +1,7 @@
+{
+  "version": "0.1.4",
+  "code": 4,
+  "notes": "多线程批量导入 + 导入可选分类",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.4-20261116/YGComic-v0.1.4-debug.apk",
+  "sizeMb": 22.8
+}
