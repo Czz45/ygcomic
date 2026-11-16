@@ -1,7 +1,7 @@
 {
-  "version": "0.1.11",
-  "code": 11,
-  "notes": "分类弹窗改为居中卡片不再叠加、按钮改浅灰取消+蓝色确定并排、PDF探测显示真实页数、PDF导入异常不再静默删书",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.11-20261116/YGComic-v0.1.11-debug.apk",
+  "version": "0.1.12",
+  "code": 12,
+  "notes": "PDF改为直接打开原文件不再整本复制、修复一直显示0页、分类弹窗按钮并排、一键选择和候选按钮不再换行",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.12-20261116/YGComic-v0.1.12-debug.apk",
   "sizeMb": 23.2
 }
