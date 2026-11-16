@@ -1,7 +1,7 @@
 {
-  "version": "0.1.8",
-  "code": 8,
-  "notes": "书架封面/进度优化，底部Tab重做，阅读器图片不裁切+进度拖动+上一本下一本",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.8-20261116/YGComic-v0.1.8-debug.apk",
+  "version": "0.1.9",
+  "code": 9,
+  "notes": "导入界面重做+快速分类前置，PDF实时读取秒级导入，阅读器上方留白修复，图片比例锁死",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.9-20261116/YGComic-v0.1.9-debug.apk",
   "sizeMb": 23.2
 }
