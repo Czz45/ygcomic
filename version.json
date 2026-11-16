@@ -1,7 +1,7 @@
 {
-  "version": "0.1.14",
-  "code": 14,
-  "notes": "修复阅读进度恢复回到上次位置、沉浸切换状态栏不再让背景跳动、阅读器控制栏文字避开状态栏和手势条",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.14-20261116/YGComic-v0.1.14-debug.apk",
+  "version": "0.1.15",
+  "code": 15,
+  "notes": "文件夹叠封面加阴影、合集子页返回键并标题行、导入页紧贴状态栏、双页模式生效、三Tab淡入衔接、阅读页进出动画",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.15-20261116/YGComic-v0.1.15-debug.apk",
   "sizeMb": 23.2
 }
