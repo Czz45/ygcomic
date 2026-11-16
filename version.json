@@ -1,7 +1,7 @@
 {
-  "version": "0.1.18",
-  "code": 18,
-  "notes": "修复文件夹内点漫画返回后布局回跳；书卡片已读未读高度统一",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.18-20261116/YGComic-v0.1.18-debug.apk",
+  "version": "0.1.19",
+  "code": 19,
+  "notes": "修复进入阅读器状态栏跳动；新增TXT小说支持(编码自动识别/分页阅读/上一本下一本)",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.19-20261116/YGComic-v0.1.19-debug.apk",
   "sizeMb": 23.2
 }
