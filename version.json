@@ -1,7 +1,7 @@
 {
-  "version": "0.1.12",
-  "code": 12,
-  "notes": "PDF改为直接打开原文件不再整本复制、修复一直显示0页、分类弹窗按钮并排、一键选择和候选按钮不再换行",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.12-20261116/YGComic-v0.1.12-debug.apk",
+  "version": "0.1.13",
+  "code": 13,
+  "notes": "更新弹窗左侧蓝色主按钮、主页面底部留出Tab栏空间不被遮挡、文件夹卡片叠两张封面更像文件夹",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.13-20261116/YGComic-v0.1.13-debug.apk",
   "sizeMb": 23.2
 }
