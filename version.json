@@ -1,7 +1,7 @@
 {
-  "version": "0.1.28",
-  "code": 28,
-  "notes": "按legado官方模型重构进度：章节索引+章内字符偏移，翻页存偏移进入按偏移找页，字号变化不丢位置",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.28-20261117/YGComic-v0.1.28-debug.apk",
-  "sizeMb": 23.4
+  "version": "0.1.29",
+  "code": 29,
+  "notes": "根治进入跳页：pager/list以已恢复进度页为初始页，进入零程序化滚动；进度只在用户手势翻页写；保存改内存增量更新提速",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.29-20261117/YGComic-v0.1.29-debug.apk",
+  "sizeMb": 23.3
 }
