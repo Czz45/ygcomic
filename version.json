@@ -1,7 +1,7 @@
 {
-  "version": "0.1.49",
-  "code": 49,
-  "notes": "修正避让方向：信息栏贴底固定，正文往上缩避让（分页高度扣信息栏+安全区），正文不再压住底部信息字",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.49-20261117/YGComic-v0.1.49-debug.apk",
+  "version": "0.1.50",
+  "code": 50,
+  "notes": "更新检测提速：官方 GitHub Releases 优先+6渠道并发(单渠道6s)，不再串行等待；小说阅读器滚动/分页模式底部文字均避让信息栏与安全区",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.50-20261117/YGComic-v0.1.50-debug.apk",
   "sizeMb": 23.4
 }
