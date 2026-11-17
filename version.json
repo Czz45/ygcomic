@@ -1,7 +1,7 @@
 {
-  "version": "0.1.29",
-  "code": 29,
-  "notes": "根治进入跳页：pager/list以已恢复进度页为初始页，进入零程序化滚动；进度只在用户手势翻页写；保存改内存增量更新提速",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.29-20261117/YGComic-v0.1.29-debug.apk",
+  "version": "0.1.30",
+  "code": 30,
+  "notes": "删除自写分页引擎，直接移植legado官方TextPagingEngine(视觉宽度加权+避头尾+按行聚页)，附每页字符偏移做进度定位",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.30-20261117/YGComic-v0.1.30-debug.apk",
   "sizeMb": 23.3
 }
