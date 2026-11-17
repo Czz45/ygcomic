@@ -1,7 +1,7 @@
 {
-  "version": "0.1.26",
-  "code": 26,
-  "notes": "移植legado按行分页引擎(视觉宽度加权+标点避头尾)，字号变页数跟着变；新增正文图片支持单独成页",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.26-20261117/YGComic-v0.1.26-debug.apk",
+  "version": "0.1.27",
+  "code": 27,
+  "notes": "修复进度丢失根因(程序化定位误存成第一页)；内置8档字体按系统解析+换行网格UI",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.27-20261117/YGComic-v0.1.27-debug.apk",
   "sizeMb": 23.3
 }
