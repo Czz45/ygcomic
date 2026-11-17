@@ -1,7 +1,7 @@
 {
-  "version": "0.1.36",
-  "code": 36,
-  "notes": "修复同一段落被硬换行拆断：分页前先把txt的软换行合并成自然段再交给legado引擎，真机验证长句不再被拆行",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.36-20261117/YGComic-v0.1.36-debug.apk",
+  "version": "0.1.37",
+  "code": 37,
+  "notes": "修复txt软换行拆分：重写分段逻辑，行尾是句末标点才断段否则与下行拼接并识别行首缩进，真机验证硬换行长句全部接成整段不再孤字成行",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.37-20261117/YGComic-v0.1.37-debug.apk",
   "sizeMb": 23.3
 }
