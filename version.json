@@ -1,7 +1,7 @@
 {
-  "version": "0.1.35",
-  "code": 35,
-  "notes": "小说排版设置改松手才重排：拖动字号/行距/边距时只更新显示不重排，松手才重排一次，拖动不卡",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.35-20261117/YGComic-v0.1.35-debug.apk",
+  "version": "0.1.36",
+  "code": 36,
+  "notes": "修复同一段落被硬换行拆断：分页前先把txt的软换行合并成自然段再交给legado引擎，真机验证长句不再被拆行",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.36-20261117/YGComic-v0.1.36-debug.apk",
   "sizeMb": 23.3
 }
