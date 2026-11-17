@@ -1,7 +1,7 @@
 {
-  "version": "0.1.21",
-  "code": 21,
-  "notes": "小说排版设置大扩充：字号放宽到72/行距4.0；新增字重、简繁、翻页动画、文字颜色+背景预设；修复段距与首行缩进不生效",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.21-20261117/YGComic-v0.1.21-debug.apk",
+  "version": "0.1.22",
+  "code": 22,
+  "notes": "小说翻页设置真正生效：覆盖/滑动/仿真/无动画四种独立翻页动画，点左右屏翻页，仅滚动保留连续滚动",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.22-20261117/YGComic-v0.1.22-debug.apk",
   "sizeMb": 23.3
 }
