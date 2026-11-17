@@ -1,7 +1,7 @@
 {
-  "version": "0.1.53",
-  "code": 53,
-  "notes": "修复 v0.1.52 大量文字丢失：整段 Text 补上 OverflowBox 等价的固定高度，按完整段落排版后再位移裁行窗口，不再因窗口压缩丢字",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.53-20261117/YGComic-v0.1.53-debug.apk",
+  "version": "0.1.54",
+  "code": 54,
+  "notes": "小说排版引擎像素直排重写：每段按完整像素高度测量、按行切片摆放并整页裁剪，彻底修复续页空白/丢字；并修标题叠字、标题重复、大字号行重叠。模拟器实测大中小字号均满页无空白、段落完整、跨章无缝",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.54-20261117/YGComic-v0.1.54-debug.apk",
   "sizeMb": 23.4
 }
