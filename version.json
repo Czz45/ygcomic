@@ -1,7 +1,7 @@
 {
-  "version": "0.1.54",
-  "code": 54,
-  "notes": "小说排版引擎像素直排重写：每段按完整像素高度测量、按行切片摆放并整页裁剪，彻底修复续页空白/丢字；并修标题叠字、标题重复、大字号行重叠。模拟器实测大中小字号均满页无空白、段落完整、跨章无缝",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.54-20261117/YGComic-v0.1.54-debug.apk",
+  "version": "0.1.55",
+  "code": 55,
+  "notes": "排版修复：①两端对齐改用固定宽度约束，每行拉满整宽不再居中/左右不齐；②渲染改逐段落窗口裁剪，消除页底被切半行残影（翻页像重复）。附带修改字号后页码越界抖动、版底百分比改全书页级进度。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.55-20261117/YGComic-v0.1.55-debug.apk",
   "sizeMb": 23.4
 }
