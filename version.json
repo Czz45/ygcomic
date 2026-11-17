@@ -1,7 +1,7 @@
 {
-  "version": "0.1.40",
-  "code": 40,
-  "notes": "解决加载慢：只分页当前章不排整本，10MB千章书秒开；进度改章节索引+章内页序号，章尾自动进下章；文字仍精确框边缘段落完整",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.40-20261117/YGComic-v0.1.40-debug.apk",
+  "version": "0.1.41",
+  "code": 41,
+  "notes": "修复每页只显示一段/大片空白：分页改用测量真实像素高度按页高累加，测量与渲染同高，一页正好填满多段连续；检查更新CDN加时间戳防缓存",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.41-20261117/YGComic-v0.1.41-debug.apk",
   "sizeMb": 23.3
 }
