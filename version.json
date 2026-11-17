@@ -1,7 +1,7 @@
 {
-  "version": "0.1.31",
-  "code": 31,
-  "notes": "小说阅读器整个重写：独立NovelReaderViewModel与漫画隔离，进入以恢复页直接创建容器零滚动，进来就是那页；进度=章节索引+字符偏移",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.31-20261117/YGComic-v0.1.31-debug.apk",
+  "version": "0.1.32",
+  "code": 32,
+  "notes": "真机修复进度丢失：UI先于文本加载排版导致永远空/回第0页，改为文本读完立即排版；真机验证翻页保存offset、杀进程重进回原位；默认滑动翻页",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.32-20261117/YGComic-v0.1.32-debug.apk",
   "sizeMb": 23.3
 }
