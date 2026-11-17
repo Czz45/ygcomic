@@ -1,7 +1,7 @@
 {
-  "version": "0.1.47",
-  "code": 47,
-  "notes": "底部版底信息栏：常驻一行等宽信息(左:章节页码进度%/右:电量%)，左右边距与正文额头一致；分页高度已扣信息栏不重叠",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.47-20261117/YGComic-v0.1.47-debug.apk",
+  "version": "0.1.48",
+  "code": 48,
+  "notes": "底部避让手势条：正文分页和版底信息栏都再抬一个底部安全区(导航栏inset与20dp较大者)，文字不再压到屏幕最底手势提示",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.48-20261117/YGComic-v0.1.48-debug.apk",
   "sizeMb": 23.4
 }
