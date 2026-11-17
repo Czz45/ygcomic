@@ -1,7 +1,7 @@
 {
-  "version": "0.1.27",
-  "code": 27,
-  "notes": "修复进度丢失根因(程序化定位误存成第一页)；内置8档字体按系统解析+换行网格UI",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.27-20261117/YGComic-v0.1.27-debug.apk",
-  "sizeMb": 23.3
+  "version": "0.1.28",
+  "code": 28,
+  "notes": "按legado官方模型重构进度：章节索引+章内字符偏移，翻页存偏移进入按偏移找页，字号变化不丢位置",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.28-20261117/YGComic-v0.1.28-debug.apk",
+  "sizeMb": 23.4
 }
