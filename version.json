@@ -1,7 +1,7 @@
 {
-  "version": "0.1.43",
-  "code": 43,
-  "notes": "修复章尾翻不到下一章(pager加前后哨兵页滑动即切章)；修复一页只放整段留白(按真实行切、长段可跨页续排、一页填满)",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.43-20261117/YGComic-v0.1.43-debug.apk",
+  "version": "0.1.44",
+  "code": 44,
+  "notes": "章节无缝连续：去掉下一章提示页，滑到章尾直接看下一章正文无提示界面视觉连续",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.44-20261117/YGComic-v0.1.44-debug.apk",
   "sizeMb": 23.3
 }
