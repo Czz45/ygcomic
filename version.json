@@ -1,7 +1,7 @@
 {
-  "version": "0.1.37",
-  "code": 37,
-  "notes": "修复txt软换行拆分：重写分段逻辑，行尾是句末标点才断段否则与下行拼接并识别行首缩进，真机验证硬换行长句全部接成整段不再孤字成行",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.37-20261117/YGComic-v0.1.37-debug.apk",
+  "version": "0.1.38",
+  "code": 38,
+  "notes": "核心修复一段变多段：分页改为段落原子，一个自然段绝不跨页拆分，放不下整段移到下页，每页只含完整段落。真机用宿命之环10MB验证段落完整连续",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.38-20261117/YGComic-v0.1.38-debug.apk",
   "sizeMb": 23.3
 }
