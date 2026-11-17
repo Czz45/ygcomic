@@ -1,7 +1,7 @@
 {
-  "version": "0.1.48",
-  "code": 48,
-  "notes": "底部避让手势条：正文分页和版底信息栏都再抬一个底部安全区(导航栏inset与20dp较大者)，文字不再压到屏幕最底手势提示",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.48-20261117/YGComic-v0.1.48-debug.apk",
+  "version": "0.1.49",
+  "code": 49,
+  "notes": "修正避让方向：信息栏贴底固定，正文往上缩避让（分页高度扣信息栏+安全区），正文不再压住底部信息字",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.49-20261117/YGComic-v0.1.49-debug.apk",
   "sizeMb": 23.4
 }
