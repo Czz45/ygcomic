@@ -1,7 +1,7 @@
 {
-  "version": "0.1.33",
-  "code": 33,
-  "notes": "修复设置三问题(真机验证)：改行距退出不再闪退；行距上限放宽到4.5改行距页数真变(88→184页)；进入只排版一次消除抖动，进度按字符偏移不丢",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.33-20261117/YGComic-v0.1.33-debug.apk",
+  "version": "0.1.34",
+  "code": 34,
+  "notes": "按legado做法重写小说排版：分页改UI层remember同步派生，改字号行距即时重排；真机验证行距反复拖不闪退、实时刷新、退出不崩、重进按字符偏移回原位",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.34-20261117/YGComic-v0.1.34-debug.apk",
   "sizeMb": 23.3
 }
