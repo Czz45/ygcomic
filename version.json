@@ -1,7 +1,7 @@
 {
-  "version": "0.1.23",
-  "code": 23,
-  "notes": "小说翻页改左右滑动手势(HorizontalPager)跟手翻页；修复进度丢失：独立线程落库退出不丢最后一次",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.23-20261117/YGComic-v0.1.23-debug.apk",
+  "version": "0.1.24",
+  "code": 24,
+  "notes": "小说翻页改为正常逻辑：按屏幕+字号动态分页一屏一页，翻页模式禁上下滚动只左右滑；重分页保持阅读位置",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.24-20261117/YGComic-v0.1.24-debug.apk",
   "sizeMb": 23.3
 }
