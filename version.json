@@ -1,7 +1,7 @@
 {
-  "version": "0.1.20",
-  "code": 20,
-  "notes": "小说阅读器独立设置(字体/字号/行距/字距/段距/边距/缩进/自动分段/背景)+章节自动识别与章节跳转",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.20-20261116/YGComic-v0.1.20-debug.apk",
+  "version": "0.1.21",
+  "code": 21,
+  "notes": "小说排版设置大扩充：字号放宽到72/行距4.0；新增字重、简繁、翻页动画、文字颜色+背景预设；修复段距与首行缩进不生效",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.21-20261117/YGComic-v0.1.21-debug.apk",
   "sizeMb": 23.3
 }
