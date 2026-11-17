@@ -1,7 +1,7 @@
 {
-  "version": "0.1.38",
-  "code": 38,
-  "notes": "核心修复一段变多段：分页改为段落原子，一个自然段绝不跨页拆分，放不下整段移到下页，每页只含完整段落。真机用宿命之环10MB验证段落完整连续",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.38-20261117/YGComic-v0.1.38-debug.apk",
+  "version": "0.1.39",
+  "code": 39,
+  "notes": "根治文字溢出串行：分页改用 TextMeasurer 按真实字体测量每段行数，测量与渲染同源，文字精确框在屏幕边缘不溢出，段落原子不跨页拆",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.39-20261117/YGComic-v0.1.39-debug.apk",
   "sizeMb": 23.3
 }
