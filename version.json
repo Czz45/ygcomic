@@ -1,7 +1,7 @@
 {
-  "version": "0.1.39",
-  "code": 39,
-  "notes": "根治文字溢出串行：分页改用 TextMeasurer 按真实字体测量每段行数，测量与渲染同源，文字精确框在屏幕边缘不溢出，段落原子不跨页拆",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.39-20261117/YGComic-v0.1.39-debug.apk",
+  "version": "0.1.40",
+  "code": 40,
+  "notes": "解决加载慢：只分页当前章不排整本，10MB千章书秒开；进度改章节索引+章内页序号，章尾自动进下章；文字仍精确框边缘段落完整",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.40-20261117/YGComic-v0.1.40-debug.apk",
   "sizeMb": 23.3
 }
