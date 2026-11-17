@@ -1,7 +1,7 @@
 {
-  "version": "0.1.44",
-  "code": 44,
-  "notes": "章节无缝连续：去掉下一章提示页，滑到章尾直接看下一章正文无提示界面视觉连续",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.44-20261117/YGComic-v0.1.44-debug.apk",
+  "version": "0.1.45",
+  "code": 45,
+  "notes": "修复最后一行被小白条遮挡：分页高度按真实系统栏(状态栏+导航条)扣减，底部留安全距离",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.45-20261117/YGComic-v0.1.45-debug.apk",
   "sizeMb": 23.3
 }
