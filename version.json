@@ -1,7 +1,7 @@
 {
-  "version": "0.1.41",
-  "code": 41,
-  "notes": "修复每页只显示一段/大片空白：分页改用测量真实像素高度按页高累加，测量与渲染同高，一页正好填满多段连续；检查更新CDN加时间戳防缓存",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.41-20261117/YGComic-v0.1.41-debug.apk",
+  "version": "0.1.42",
+  "code": 42,
+  "notes": "排版满页修复(一页填满多段)+检查更新改走ghproxy国内实时镜像不再受jsDelivr缓存影响检测不到新版",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.42-20261117/YGComic-v0.1.42-debug.apk",
   "sizeMb": 23.3
 }
