@@ -1,7 +1,7 @@
 {
-  "version": "0.1.45",
-  "code": 45,
-  "notes": "修复最后一行被小白条遮挡：分页高度按真实系统栏(状态栏+导航条)扣减，底部留安全距离",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.45-20261117/YGComic-v0.1.45-debug.apk",
+  "version": "0.1.46",
+  "code": 46,
+  "notes": "沉浸式全屏阅读：进入隐藏状态栏和底部导航条只剩文字全屏，底部不再遮挡裁切；顶部仅避让摄像头挖孔；点出控制栏显示系统栏",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.46-20261117/YGComic-v0.1.46-debug.apk",
   "sizeMb": 23.3
 }
