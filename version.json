@@ -1,7 +1,7 @@
 {
-  "version": "0.1.24",
-  "code": 24,
-  "notes": "小说翻页改为正常逻辑：按屏幕+字号动态分页一屏一页，翻页模式禁上下滚动只左右滑；重分页保持阅读位置",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.24-20261117/YGComic-v0.1.24-debug.apk",
+  "version": "0.1.25",
+  "code": 25,
+  "notes": "小说动态分页修正：去掉字数下限钳制，每页容量严格按字号算(小字千字/页大字几十字/页)，设置面板实时显示每页字数供验证",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.25-20261117/YGComic-v0.1.25-debug.apk",
   "sizeMb": 23.3
 }
