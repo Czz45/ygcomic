@@ -1,7 +1,7 @@
 {
-  "version": "0.1.50",
-  "code": 50,
-  "notes": "更新检测提速：官方 GitHub Releases 优先+6渠道并发(单渠道6s)，不再串行等待；小说阅读器滚动/分页模式底部文字均避让信息栏与安全区",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.50-20261117/YGComic-v0.1.50-debug.apk",
+  "version": "0.1.51",
+  "code": 51,
+  "notes": "排版引擎移植 FlowReader ChapterPaginator：贪心装块+字符二分切页，测量与渲染严格同源（同 TextStyle/简繁/缩进/标题），逐 Fragment 渲染，彻底解决长段跨页串行/溢出/压信息栏",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.51-20261117/YGComic-v0.1.51-debug.apk",
   "sizeMb": 23.4
 }
