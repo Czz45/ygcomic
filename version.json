@@ -1,7 +1,7 @@
 {
-  "version": "0.1.42",
-  "code": 42,
-  "notes": "排版满页修复(一页填满多段)+检查更新改走ghproxy国内实时镜像不再受jsDelivr缓存影响检测不到新版",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.42-20261117/YGComic-v0.1.42-debug.apk",
+  "version": "0.1.43",
+  "code": 43,
+  "notes": "修复章尾翻不到下一章(pager加前后哨兵页滑动即切章)；修复一页只放整段留白(按真实行切、长段可跨页续排、一页填满)",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.43-20261117/YGComic-v0.1.43-debug.apk",
   "sizeMb": 23.3
 }
