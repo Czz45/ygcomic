@@ -1,6 +1,6 @@
 {
-  "code": 80,
-  "version": "0.1.80",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.80-20261118/YGComic-v0.1.80-debug.apk",
-  "notes": "书源引擎对照 hadc188/reader 移植 P0 六项：JS段隔离、HTML5裸片段补祖先、@链逐步筛选、GBK charset编码、浏览器请求头、正则清洗两段语义。重编双架构so。"
+  "code": 81,
+  "version": "0.1.81",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.81-20261118/YGComic-v0.1.81-debug.apk",
+  "notes": "首页重构：顶部搜索框+按类/分组/订阅切换源+分类预览在线小说；书源管理移入设置；导入源记住订阅链接；修复版本一直提示重新安装。"
 }
