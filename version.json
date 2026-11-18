@@ -1,6 +1,6 @@
 {
-  "code": 81,
-  "version": "0.1.81",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.81-20261118/YGComic-v0.1.81-debug.apk",
-  "notes": "首页重构：顶部搜索框+按类/分组/订阅切换源+分类预览在线小说；书源管理移入设置；导入源记住订阅链接；修复版本一直提示重新安装。"
+  "code": 82,
+  "version": "0.1.82",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.82-20261118/YGComic-v0.1.82-debug.apk",
+  "notes": "书源导入支持自定义命名；首页书源/分组/分类切换改下拉；加入书架记住首页分类索引，便于后续分类整理。"
 }
