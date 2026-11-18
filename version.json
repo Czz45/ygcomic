@@ -1,7 +1,7 @@
 {
-  "version": "0.1.70",
-  "code": 70,
-  "notes": "详情页照 legado 小说模块机制提速：①秒显——进入详情页立即用搜索结果的书名/作者/封面/简介填充，不再等待网络；②目录本地缓存——新增 chapters 表，目录首次拉取后落库，再次进入同书源直接本地秒开，换源按书源+书籍URL分别缓存；③后台补全——详情元数据与目录后台并发拉取，网络慢或失败不影响已展示内容，换源时旧请求自动作废。本版仅改 Kotlin 层与本地数据结构，未改 Rust 书源引擎。Kotlin 编译通过、APK 40.04MB。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.70-20261118/YGComic-v0.1.70-debug.apk",
-  "sizeMb": 40.04
+  "version": "0.1.71",
+  "code": 71,
+  "notes": "照 legado 开源阅读方式优化书源导入与搜索：①修复书源一次只能导入约 40 个的问题，改为批量解析+单事务批量入库，900+ 书源可一次导入完成，解析失败项跳过并统计；②优化搜索卡顿，照 legado 并发池加并发上限 12+单源 30 秒超时，避免上百书源同时请求卡死；③搜索结果改为滑动加载，先显示前 20 本，继续下滑自动加载更多，不再一次铺开全部。仅改 Kotlin 层，未动 Rust 引擎。Kotlin 编译通过、APK 40.06MB。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.71-20261118/YGComic-v0.1.71-debug.apk",
+  "sizeMb": 40.06
 }
