@@ -1,7 +1,7 @@
 {
-  "version": "0.1.67",
-  "code": 67,
-  "notes": "修复书籍详情页四大问题：①meta 标签解析错误导致书名/作者/分类/简介显示整段HTML（改为取content属性+兼容@CSS:大写）；②绝大多数书目录0章（章节规则后的<js>后处理块污染CSS选择器，改为单独剥离处理+脚本失败保留章节）；③封面加载不出（封面相对路径补全为绝对URL）；④同书多源聚合判定（书名作者相同即合并，兼容书名号/空格差异）。另目录URL为空时自动探测og:novel:read_url补全。验证：Rust单测15/15全绿、so两架构重编、Kotlin编译通过、APK 39.64MB。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.67-20261118/YGComic-v0.1.67-debug.apk",
-  "sizeMb": 39.64
+  "version": "0.1.68",
+  "code": 68,
+  "notes": "核心逻辑对齐开源阅读（legado），UI保持自有风格：①作者/书名清洗——循环剥离所有重复作者:前缀（全角半角均可）+标题去粘连作者尾巴，不同来源同一本书归一到相同书名作者，搜索聚合真正生效；②封面加载——以详情页重定向后真实URL为基准拼相对封面路径，修复大量站点封面404；③详情页布局——加入书架/开始阅读按钮上移到章节目录之前，不再翻两百章才看到开始阅读。验证：Rust单测17/17全绿、so两架构重编、Kotlin编译通过、APK 39.65MB。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.68-20261118/YGComic-v0.1.68-debug.apk",
+  "sizeMb": 39.65
 }
