@@ -1,6 +1,6 @@
 {
-  "code": 78,
-  "version": "0.1.78",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.78-20261118/YGComic-v0.1.78-debug.apk",
-  "notes": "书源按分类导入与查看：导入读取分组标签，列表显示「书源名 (分组)」，顶部可按小说/漫画/音乐等分类筛选"
+  "code": 79,
+  "version": "0.1.79",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.79-20261118/YGComic-v0.1.79-debug.apk",
+  "notes": "搜索页加入书架后按钮变蓝显示「✓ 已加入」且不可重复点击；已在书架的书重新搜索也直接标记"
 }
