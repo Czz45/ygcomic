@@ -1,6 +1,6 @@
 {
-  "code": 83,
-  "version": "0.1.83",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.83-20261118/YGComic-v0.1.83-debug.apk",
-  "notes": "修复书源「发现」绝大多数看不了：分类列表支持 JSON 数组/文本/JS 三种格式；发现页改用书源 ruleExplore 规则解析（此前误用搜索规则致 37 源解析出 0 本），缺失字段逐项回退搜索规则。"
+  "code": 84,
+  "version": "0.1.84",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.84-20261118/YGComic-v0.1.84-debug.apk",
+  "notes": "修复首页「切换网站书源」下拉卡死：书源多（约970个）时旧下拉一次性渲染全部条目导致卡飞。改为懒加载抽屉——只渲染可视项、支持按名称/分组搜索过滤、下滑自动加载更多（每批30个）。分组方式和分类下拉条目少，保持不变。"
 }
