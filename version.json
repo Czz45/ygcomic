@@ -1,7 +1,6 @@
 {
-  "version": "0.1.75",
-  "code": 75,
-  "notes": "联网换源提速：照阅读App换源实现改为边搜边出（每源搜到立即显示，首批秒出）+结果缓存（同名书二次打开直接显示+后台静默刷新）+并发12→20+重复点击取消旧任务。判定仍是书名完全一致+作者众数过滤，选源后从当前章续读。仅Kotlin层，APK 40.36MB。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.75-20261118/YGComic-v0.1.75-debug.apk",
-  "sizeMb": 40.36
+  "code": 76,
+  "version": "0.1.76",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.76-20261118/YGComic-v0.1.76-debug.apk",
+  "notes": "网络小说正文持久化缓存（二次进入免重抓）+ 书源智能排序（用得多/命中率高优先搜）"
 }
