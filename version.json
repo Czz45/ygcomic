@@ -1,7 +1,7 @@
 {
-  "version": "0.1.58",
-  "code": 58,
-  "notes": "新增网络书源功能（Rust 引擎）：兼容 legado 书源格式，搜索/详情/目录/正文四环节由 Rust 规则引擎解析后经 JNI 接入；网络小说按章抓取正文拼接后走现有排版管线，翻页/滚动/进度完全复用。真机验证：添加本地测试源→搜索→加入书架→打开阅读→跨章翻页，中文排版与本地 TXT 一致。应用内「书源」入口管理、源内搜索、加入书架。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.58-20261118/YGComic-v0.1.58-debug.apk",
-  "sizeMb": 39.5
+  "version": "0.1.59",
+  "code": 59,
+  "notes": "书源新增三种导入方式：①网络导入（填JSON的URL直接下载导入，自动识别UTF-8/GBK）②本地文件（系统文件选择器选.json）③从开源阅读共享/分享过来或在文件管理器用YG漫画打开，自动跳转书源页导入。兼容legado书源格式。修复网络请求走系统代理导致的502。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.59-20261118/YGComic-v0.1.59-debug.apk",
+  "sizeMb": 39.7
 }
