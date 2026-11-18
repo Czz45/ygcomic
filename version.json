@@ -1,7 +1,7 @@
 {
-  "version": "0.1.59",
-  "code": 59,
-  "notes": "书源新增三种导入方式：①网络导入（填JSON的URL直接下载导入，自动识别UTF-8/GBK）②本地文件（系统文件选择器选.json）③从开源阅读共享/分享过来或在文件管理器用YG漫画打开，自动跳转书源页导入。兼容legado书源格式。修复网络请求走系统代理导致的502。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.59-20261118/YGComic-v0.1.59-debug.apk",
-  "sizeMb": 39.7
+  "version": "0.1.60",
+  "code": 60,
+  "notes": "新增独立搜索页：首页「搜索」入口进入，在全部启用书源里并发搜索、边搜边出——每个源一返回就立即显示，不再干等全部完成。搜索中实时显示「已搜 X/Y 个书源，已找到 N 本」和进度条，可随时停止。结果一键加入书架并进入阅读。优化网络导入URL输入框（URI键盘+关自动纠错）。兼容整包导入 legado 书源（65源大包已验证）。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.60-20261118/YGComic-v0.1.60-debug.apk",
+  "sizeMb": 39.5
 }
