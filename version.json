@@ -1,7 +1,7 @@
 {
-  "version": "0.1.60",
-  "code": 60,
-  "notes": "新增独立搜索页：首页「搜索」入口进入，在全部启用书源里并发搜索、边搜边出——每个源一返回就立即显示，不再干等全部完成。搜索中实时显示「已搜 X/Y 个书源，已找到 N 本」和进度条，可随时停止。结果一键加入书架并进入阅读。优化网络导入URL输入框（URI键盘+关自动纠错）。兼容整包导入 legado 书源（65源大包已验证）。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.60-20261118/YGComic-v0.1.60-debug.apk",
-  "sizeMb": 39.5
+  "version": "0.1.61",
+  "code": 61,
+  "notes": "修复书源搜索引擎（重点）：重写 Rust 规则引擎，完整支持 legado 语法（##正则净化/@属性@js链/||&&%%合成/@span.N索引/文本过滤）；修复 js 引擎无return表达式规则，bookUrl正常抠出；搜索结果加相关度评分排序（完全匹配>前缀>包含>重合），精确结果排最前；过滤空书名/JS模板残留/空URL无效结果；修复加入书架失败（无法获取目录地址，bookUrl/tocUrl提取+绝对化）。新增：从书源加入的网络书封面左上角显示绿色「网」字角标。本版按反馈用 Windows 原生 Rust 跑真实网页验证（引擎单测10/10通过），未用模拟器，请真机验证。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.61-20261118/YGComic-v0.1.61-debug.apk",
+  "sizeMb": 39.6
 }
