@@ -1,6 +1,6 @@
 {
-  "code": 82,
-  "version": "0.1.82",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.82-20261118/YGComic-v0.1.82-debug.apk",
-  "notes": "书源导入支持自定义命名；首页书源/分组/分类切换改下拉；加入书架记住首页分类索引，便于后续分类整理。"
+  "code": 83,
+  "version": "0.1.83",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.83-20261118/YGComic-v0.1.83-debug.apk",
+  "notes": "修复书源「发现」绝大多数看不了：分类列表支持 JSON 数组/文本/JS 三种格式；发现页改用书源 ruleExplore 规则解析（此前误用搜索规则致 37 源解析出 0 本），缺失字段逐项回退搜索规则。"
 }
