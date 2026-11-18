@@ -1,7 +1,7 @@
 {
-  "version": "0.1.72",
-  "code": 72,
-  "notes": "书源页交互优化：①添加书源、去书架按钮移到页面顶部，900+ 书源无需滚到底即可操作；②新增全选/取消全选按钮；③每条书源增加勾选框，可多选后「删除所选」一次性批量删除（单事务，不卡顿）。仅改 Kotlin 层，未动 Rust 引擎。Kotlin 编译通过、APK 40.06MB。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.72-20261118/YGComic-v0.1.72-debug.apk",
+  "version": "0.1.73",
+  "code": 73,
+  "notes": "书源导入与列表优化：①修复网络导入常只成功80条——根因是旧逻辑用UTF-8乱码替换符探测把整份5MB订阅退回GBK解码导致乱码、识别数与解析成功率锐减；现严格按响应头charset解码(默认UTF-8)+支持gzip+读超时放宽到60s。②导入新增实时进度(已下载KB/解析N总数/写入/最终识别-成功-失败数)。③书源列表改轻量单行+稳定key，900+源滚动不卡。仅Kotlin层未动Rust，编译通过、APK 40.06MB。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.73-20261118/YGComic-v0.1.73-debug.apk",
   "sizeMb": 40.06
 }
