@@ -1,7 +1,7 @@
 {
-  "version": "0.1.61",
-  "code": 61,
-  "notes": "修复书源搜索引擎（重点）：重写 Rust 规则引擎，完整支持 legado 语法（##正则净化/@属性@js链/||&&%%合成/@span.N索引/文本过滤）；修复 js 引擎无return表达式规则，bookUrl正常抠出；搜索结果加相关度评分排序（完全匹配>前缀>包含>重合），精确结果排最前；过滤空书名/JS模板残留/空URL无效结果；修复加入书架失败（无法获取目录地址，bookUrl/tocUrl提取+绝对化）。新增：从书源加入的网络书封面左上角显示绿色「网」字角标。本版按反馈用 Windows 原生 Rust 跑真实网页验证（引擎单测10/10通过），未用模拟器，请真机验证。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.61-20261118/YGComic-v0.1.61-debug.apk",
+  "version": "0.1.62",
+  "code": 62,
+  "notes": "修复书源搜索引擎（本版重点）：支持 POST 型书源搜索（此前丢弃 method/body 选项一律按 GET 发，导致 POST 源搜不出，现在正确解析并按 POST 发送、替换 {{key}}/{{page}}，约 10 个 POST 源恢复）；跨书源全局相关度排序（多源并发由「谁先返回排谁前」改为按书名与关键词相关度全局重排，完全匹配>前缀>包含>逐字重合，《斗破苍穹》精确结果恒排最前，保留边搜边出）。修复：加入书架不再因目录地址失败（detail 拿不到 tocUrl 时回退 bookUrl）；网络书封面正常显示（此前封面 URL 被写死空值，现在存入并用 Coil 加载）。本版按反馈用 Windows 原生 Rust 跑逐源真实探针验证（POST 改造生效、引擎单测 10/10 通过），未用模拟器，请真机验证。说明：部分书源站点本身已失效（超时/证书/404/403）属源站问题，可换源搜索。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.62-20261118/YGComic-v0.1.62-debug.apk",
   "sizeMb": 39.6
 }
