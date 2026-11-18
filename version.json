@@ -1,7 +1,7 @@
 {
-  "version": "0.1.66",
-  "code": 66,
-  "notes": "搜索结果从个位数提升到九十多本：导入新书源集（书源65→74）+修复规则引擎字段级{{}}内插bug（JSON API型书源整源0本的问题）。Windows原生实测关键词斗破苍穹：6源出书、精确92本。新增书籍详情页（封面/作者/分类/字数/简介/章节目录）、一本书多源聚合与换源、加入书架带封面；网络书阅读改为滑动窗口预加载当前章+后19章，不再一次下载整本。验证：Rust单测13/13、so两架构重编、Kotlin编译通过、probe逐源实测、APK 39.65MB。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.66-20261118/YGComic-v0.1.66-debug.apk",
-  "sizeMb": 39.65
+  "version": "0.1.67",
+  "code": 67,
+  "notes": "修复书籍详情页四大问题：①meta 标签解析错误导致书名/作者/分类/简介显示整段HTML（改为取content属性+兼容@CSS:大写）；②绝大多数书目录0章（章节规则后的<js>后处理块污染CSS选择器，改为单独剥离处理+脚本失败保留章节）；③封面加载不出（封面相对路径补全为绝对URL）；④同书多源聚合判定（书名作者相同即合并，兼容书名号/空格差异）。另目录URL为空时自动探测og:novel:read_url补全。验证：Rust单测15/15全绿、so两架构重编、Kotlin编译通过、APK 39.64MB。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.67-20261118/YGComic-v0.1.67-debug.apk",
+  "sizeMb": 39.64
 }
