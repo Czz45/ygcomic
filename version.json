@@ -1,7 +1,7 @@
 {
-  "version": "0.1.71",
-  "code": 71,
-  "notes": "照 legado 开源阅读方式优化书源导入与搜索：①修复书源一次只能导入约 40 个的问题，改为批量解析+单事务批量入库，900+ 书源可一次导入完成，解析失败项跳过并统计；②优化搜索卡顿，照 legado 并发池加并发上限 12+单源 30 秒超时，避免上百书源同时请求卡死；③搜索结果改为滑动加载，先显示前 20 本，继续下滑自动加载更多，不再一次铺开全部。仅改 Kotlin 层，未动 Rust 引擎。Kotlin 编译通过、APK 40.06MB。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.71-20261118/YGComic-v0.1.71-debug.apk",
+  "version": "0.1.72",
+  "code": 72,
+  "notes": "书源页交互优化：①添加书源、去书架按钮移到页面顶部，900+ 书源无需滚到底即可操作；②新增全选/取消全选按钮；③每条书源增加勾选框，可多选后「删除所选」一次性批量删除（单事务，不卡顿）。仅改 Kotlin 层，未动 Rust 引擎。Kotlin 编译通过、APK 40.06MB。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.72-20261118/YGComic-v0.1.72-debug.apk",
   "sizeMb": 40.06
 }
