@@ -1,7 +1,7 @@
 {
-  "version": "0.1.69",
-  "code": 69,
-  "notes": "修复0.1.68装机反馈三个问题：①阅读器返回白屏——详情页分享数据改为非破坏性读取，返回后正常显示；②网络封面加载不出——补全Coil的coil-network-okhttp网络加载器，http(s)封面正常显示；③搜索《斗破苍穹》重复两条——空作者条目并入同名有作者分组，同名同作者聚合为一条，续作仍独立。关于书籍未持久化：写库链路逐行核查未发现问题，装此版请确认返回后书是否还在，若仍丢失将抓日志定位。Kotlin编译通过、APK 40.04MB（本版未改Rust无需重编so）。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.69-20261118/YGComic-v0.1.69-debug.apk",
+  "version": "0.1.70",
+  "code": 70,
+  "notes": "详情页照 legado 小说模块机制提速：①秒显——进入详情页立即用搜索结果的书名/作者/封面/简介填充，不再等待网络；②目录本地缓存——新增 chapters 表，目录首次拉取后落库，再次进入同书源直接本地秒开，换源按书源+书籍URL分别缓存；③后台补全——详情元数据与目录后台并发拉取，网络慢或失败不影响已展示内容，换源时旧请求自动作废。本版仅改 Kotlin 层与本地数据结构，未改 Rust 书源引擎。Kotlin 编译通过、APK 40.04MB。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.70-20261118/YGComic-v0.1.70-debug.apk",
   "sizeMb": 40.04
 }
