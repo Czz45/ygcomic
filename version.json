@@ -1,7 +1,7 @@
 {
-  "version": "0.1.68",
-  "code": 68,
-  "notes": "核心逻辑对齐开源阅读（legado），UI保持自有风格：①作者/书名清洗——循环剥离所有重复作者:前缀（全角半角均可）+标题去粘连作者尾巴，不同来源同一本书归一到相同书名作者，搜索聚合真正生效；②封面加载——以详情页重定向后真实URL为基准拼相对封面路径，修复大量站点封面404；③详情页布局——加入书架/开始阅读按钮上移到章节目录之前，不再翻两百章才看到开始阅读。验证：Rust单测17/17全绿、so两架构重编、Kotlin编译通过、APK 39.65MB。",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.68-20261118/YGComic-v0.1.68-debug.apk",
-  "sizeMb": 39.65
+  "version": "0.1.69",
+  "code": 69,
+  "notes": "修复0.1.68装机反馈三个问题：①阅读器返回白屏——详情页分享数据改为非破坏性读取，返回后正常显示；②网络封面加载不出——补全Coil的coil-network-okhttp网络加载器，http(s)封面正常显示；③搜索《斗破苍穹》重复两条——空作者条目并入同名有作者分组，同名同作者聚合为一条，续作仍独立。关于书籍未持久化：写库链路逐行核查未发现问题，装此版请确认返回后书是否还在，若仍丢失将抓日志定位。Kotlin编译通过、APK 40.04MB（本版未改Rust无需重编so）。",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.69-20261118/YGComic-v0.1.69-debug.apk",
+  "sizeMb": 40.04
 }
