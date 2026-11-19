@@ -1,6 +1,6 @@
 {
-  "code": 86,
-  "version": "0.1.86",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.86-20261119/YGComic-v0.1.86-debug.apk",
-  "notes": "修复 v0.1.85 首页书源抽屉「从分级列表返回上一级闪退」：抽屉按层级重建列表滚动状态，返回上一级时滚动位置归零，避免旧滚动索引越界；所有分组索引访问改安全兜底，消除重组时序竞态；加载更多检测加层级 key。仅调整 Kotlin UI 层，未改书源引擎。"
+  "code": 87,
+  "version": "0.1.87",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.87-20261119/YGComic-v0.1.87-debug.apk",
+  "notes": "修复「阅读器内切换源不生效」：换源成功后递增换源代数并重置阅读器分页状态，自动定位回原章节、从第0页显示新源正文，新旧源章节数/页数相同时也能正确刷新。仅调整 Kotlin 阅读器 UI 层，未改动书源引擎。"
 }
