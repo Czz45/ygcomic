@@ -1,6 +1,6 @@
 {
-  "code": 93,
-  "version": "0.1.93",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.93-20261119/YGComic-v0.1.93-debug.apk",
-  "notes": "网站检测大幅提速（滚动窗口并发8+超时6秒，不再按批等待）；首页直接显示检测结果：书源卡片显示通网汇总，抽屉里每个源旁标出通网✓/不通✗，选源一眼可见。"
+  "code": 94,
+  "version": "0.1.94",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.94-20261119/YGComic-v0.1.94-debug.apk",
+  "notes": "首页顶部新增分类横条导航：小说 / 听书 / 漫画 / 短剧 / 番剧。小说为现有首页，其余为预留页面（显示即将上线，后续可切换接入真实内容）。横条可左右滑动，选中高亮带下划线。"
 }
