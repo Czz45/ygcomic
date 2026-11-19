@@ -1,6 +1,6 @@
 {
-  "code": 90,
-  "version": "0.1.90",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.90-20261119/YGComic-v0.1.90-debug.apk",
-  "notes": "智能排序再升级：失败分网络/限流/源站三类，境外站没挂VPN的连不上不再当成坏源沉底；全网同时失败自动判定网络不通并减免惩罚、有源命中即自愈；按书源分组归一化保护冷门分类专精源；限流/网络惩罚自动衰减。"
+  "code": 91,
+  "version": "0.1.91",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.91-20261119/YGComic-v0.1.91-debug.apk",
+  "notes": "书源页新增「检测网站通网」按钮：并发实测已启用源并标记通网✓/不通✗，支持全部/仅通网/仅不通/未检测筛选；结果本地持久化，检测中可停止。快速挑出真正能用的源。"
 }
