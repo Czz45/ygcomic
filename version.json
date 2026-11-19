@@ -1,6 +1,6 @@
 {
-  "code": 102,
-  "version": "0.1.102",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.102-20261119/YGComic-v0.1.102-debug.apk",
-  "notes": "首页分类广场改成按书源作者自己的分类分组，小说页只放小说源。分类按每源分组标签(groupName)铺开，标签可叠加(一源可同时出现在多个分类)；小说页只显示文字源，其它类型源不再混入；点分类展开该分类下各源自己的发现页分类取书，结果按书名+作者聚合成一本(可换源)。底部三tab和书架页保持原样。"
+  "code": 104,
+  "version": "0.1.104",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.104-20261119/YGComic-v0.1.104-debug.apk",
+  "notes": "修复书源引擎：搜索地址里的 <js>/@js: 脚本段和 {{...}} 动态表达式现在会先求值再请求(照开源阅读规则求值)，解决一批书源因地址带脚本被错误编码而检测不通/搜不出书的问题。纯拼接/取key类书源恢复；依赖 java.ajax/AES/WebView 的重度源暂不支持。数据无需重装。"
 }
