@@ -1,6 +1,6 @@
 {
-  "code": 99,
-  "version": "0.1.99",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.99-20261119/YGComic-v0.1.99-debug.apk",
-  "notes": "界面细节优化：书源页按钮文字长度变化时不再跳动。之前继续检测/停止检测x-y/屏蔽不通/删除所选等按钮文字长短不一，宽度紧张时会从一行折成两行导致按钮高度变化和整排跳动；现在统一强制单行显示、超出省略，高度固定不再变化。纯UI调整，功能未变，未动解析引擎。"
+  "code": 100,
+  "version": "0.1.100",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.100-20261119/YGComic-v0.1.100-debug.apk",
+  "notes": "架构升级：新增 com.yg.comic.shared 纯 Kotlin 共享逻辑层（相关性排序/书源健康度评分/搜索聚合/换源判定四类逻辑），为 Windows/iOS/安卓多端支持打底。Android 端改为委托调用，功能、界面、排序结果均与上个版本完全一致，无感知变化。"
 }
