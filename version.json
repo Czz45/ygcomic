@@ -1,6 +1,6 @@
 {
-  "code": 89,
-  "version": "0.1.89",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.89-20261119/YGComic-v0.1.89-debug.apk",
-  "notes": "智能书源排序升级：失败/超时/连不通的源直接减分沉底，连续失败临时熔断；贝叶斯平滑+时间衰减让新源保留机会、老源按近期真实表现动态排名；命中质量(是否搜到你要找的书)计入评分。"
+  "code": 90,
+  "version": "0.1.90",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.90-20261119/YGComic-v0.1.90-debug.apk",
+  "notes": "智能排序再升级：失败分网络/限流/源站三类，境外站没挂VPN的连不上不再当成坏源沉底；全网同时失败自动判定网络不通并减免惩罚、有源命中即自愈；按书源分组归一化保护冷门分类专精源；限流/网络惩罚自动衰减。"
 }
