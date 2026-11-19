@@ -1,6 +1,6 @@
 {
-  "code": 100,
-  "version": "0.1.100",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.100-20261119/YGComic-v0.1.100-debug.apk",
-  "notes": "架构升级：新增 com.yg.comic.shared 纯 Kotlin 共享逻辑层（相关性排序/书源健康度评分/搜索聚合/换源判定四类逻辑），为 Windows/iOS/安卓多端支持打底。Android 端改为委托调用，功能、界面、排序结果均与上个版本完全一致，无感知变化。"
+  "code": 101,
+  "version": "0.1.101",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.101-20261119/YGComic-v0.1.101-debug.apk",
+  "notes": "搜索排序升级：新增点击/采纳两级漏斗信号。你点开某来源结果进详情记为点击、加入书架记为采纳（权重更高），按相对曝光比率计入书源评分并带上限保护。用得越多越常点开/加入书架的源排得越靠前，搜索结果随使用习惯持续改善。仅调排序，界面功能无变化。"
 }
