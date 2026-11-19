@@ -1,6 +1,6 @@
 {
-  "code": 94,
-  "version": "0.1.94",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.94-20261119/YGComic-v0.1.94-debug.apk",
-  "notes": "首页顶部新增分类横条导航：小说 / 听书 / 漫画 / 短剧 / 番剧。小说为现有首页，其余为预留页面（显示即将上线，后续可切换接入真实内容）。横条可左右滑动，选中高亮带下划线。"
+  "code": 96,
+  "version": "0.1.96",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.96-20261119/YGComic-v0.1.96-debug.apk",
+  "notes": "修复书源网站检测闪退：导入上千个书源后检测跑到 250 个左右闪退。根因是检测时一次性创建全部协程 + 分批屏障，导致 JNI 层同时新建大量脚本引擎与网络连接、native 内存暴涨崩溃，且单个卡住的源会拖死整批。改为滚动窗口（同时在途 6 个，完成一个立刻放行下一个），既压住 native 内存峰值，又不会被慢源拖死。请重新导入订阅后重试检测。"
 }
