@@ -1,6 +1,6 @@
 {
-  "code": 91,
-  "version": "0.1.91",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.91-20261119/YGComic-v0.1.91-debug.apk",
-  "notes": "书源页新增「检测网站通网」按钮：并发实测已启用源并标记通网✓/不通✗，支持全部/仅通网/仅不通/未检测筛选；结果本地持久化，检测中可停止。快速挑出真正能用的源。"
+  "code": 92,
+  "version": "0.1.92",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.92-20261119/YGComic-v0.1.92-debug.apk",
+  "notes": "修复 v0.1.91 网站检测跑到一半闪退：改为每批 5 个分批串行检测，压低峰值内存，检测过程稳定。通网标识/筛选/持久化功能不变。"
 }
