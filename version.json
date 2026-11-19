@@ -1,6 +1,6 @@
 {
-  "code": 85,
-  "version": "0.1.85",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.85-20261119/YGComic-v0.1.85-debug.apk",
-  "notes": "首页书源切换重构：2000+源不再平铺。抽屉改为两级钻取——先按当前「切换方式」（类型/分组/订阅）列出分组（每组显示数量），点进组才看该组源；搜索框跨全部分组搜索。切换方式后自动重置。卡片显示「N组·M个」。懒加载+下滑加载更多保留，不再切完分类还是2000个。"
+  "code": 86,
+  "version": "0.1.86",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.86-20261119/YGComic-v0.1.86-debug.apk",
+  "notes": "修复 v0.1.85 首页书源抽屉「从分级列表返回上一级闪退」：抽屉按层级重建列表滚动状态，返回上一级时滚动位置归零，避免旧滚动索引越界；所有分组索引访问改安全兜底，消除重组时序竞态；加载更多检测加层级 key。仅调整 Kotlin UI 层，未改书源引擎。"
 }
