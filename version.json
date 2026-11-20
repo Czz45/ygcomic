@@ -1,6 +1,6 @@
 {
-  "code": 111,
-  "version": "0.1.111",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.111-20261120/YGComic-v0.1.111-debug.apk",
-  "notes": "首页分类可选订阅源：分类广场点分类后改为列出该分类下的订阅源，不再跨源直接拉书。点订阅源进入源内页，顶部是该源的分类标签、下方直接列书，点分类只切换下方的书不多跳一级。源内页可返回来路。底部三 Tab 和书架页不变。"
+  "code": 112,
+  "version": "0.1.112",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.112-20261120/YGComic-v0.1.112-debug.apk",
+  "notes": "封面加载状态可分辨：首页书源内页书籍封面区分三种状态——有封面显示封面、无封面地址显示\"暂无封面\"、加载失败显示\"加载失败\"，不再只显示灰色占位让人分不清。只改首页封面卡片，书架页和底部三 Tab 不变。"
 }
