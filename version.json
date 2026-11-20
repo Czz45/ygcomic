@@ -1,6 +1,6 @@
 {
-  "code": 105,
-  "version": "0.1.105",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.105-20261119/YGComic-v0.1.105-debug.apk",
-  "notes": "网站连通检测的旧结果会随引擎规则升级自动失效。升级到本版后进入书源页会提示检测结果已重置，请点重新检测，按新引擎重新跑一遍通网状态即可看到 v0.1.104 的修复效果。数据无需重装。"
+  "code": 106,
+  "version": "0.1.106",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.106-20261120/YGComic-v0.1.106-debug.apk",
+  "notes": "首页改版：小说页不再直接铺书，改为先列小说书源（可筛选、显示通网状态），点书源进去看分类，点分类再看书。顶部 Tab、搜索框、本地书架入口与底部三 Tab、书架页均不变。"
 }
