@@ -1,6 +1,6 @@
 {
-  "code": 106,
-  "version": "0.1.106",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.106-20261120/YGComic-v0.1.106-debug.apk",
-  "notes": "首页改版：小说页不再直接铺书，改为先列小说书源（可筛选、显示通网状态），点书源进去看分类，点分类再看书。顶部 Tab、搜索框、本地书架入口与底部三 Tab、书架页均不变。"
+  "code": 107,
+  "version": "0.1.107",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.107-20261120/YGComic-v0.1.107-debug.apk",
+  "notes": "首页恢复「分类广场」：小说页顶部按书源作者分组的分类标签回来了，点标签跨源聚合加载该分类小说；与「点书源进去选书」的三级钻取并存。底部三 Tab 和书架页不变。"
 }
