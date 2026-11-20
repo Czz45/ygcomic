@@ -1,6 +1,6 @@
 {
-  "code": 112,
-  "version": "0.1.112",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.112-20261120/YGComic-v0.1.112-debug.apk",
-  "notes": "封面加载状态可分辨：首页书源内页书籍封面区分三种状态——有封面显示封面、无封面地址显示\"暂无封面\"、加载失败显示\"加载失败\"，不再只显示灰色占位让人分不清。只改首页封面卡片，书架页和底部三 Tab 不变。"
+  "code": 113,
+  "version": "0.1.113",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.113-20261120/YGComic-v0.1.113-debug.apk",
+  "notes": "分类只保留一个入口：首页原来有两组长得一样的分类标签，点错那组只会筛选书源列表、进不了订阅源，现在删掉多余那组，点分类统一进入该分类的订阅源列表，选好源再进去看书。书架页和底部三 Tab 不变。"
 }
