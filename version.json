@@ -1,6 +1,6 @@
 {
-  "code": 108,
-  "version": "0.1.108",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.108-20261120/YGComic-v0.1.108-debug.apk",
-  "notes": "首页小说书源新增分类筛选（按书源标签如玄幻/都市，选完只列该类书源，不再一次铺 2000+）；书源页新增独立「重测」按钮（清空通网数据从零重测）；书源页屏蔽的书源首页也不再显示，两边一致。底部三 Tab 和书架页不变。"
+  "code": 109,
+  "version": "0.1.109",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.109-20261120/YGComic-v0.1.109-debug.apk",
+  "notes": "点进书源后同一页：顶部选分类、下方直接浏览该分类的书籍；点分类只切换书列表，不再多跳一层「选分类页→选书页」。点书源自动加载首个分类书籍。首页分类广场、分类筛选书源、重测按钮、屏蔽联动均保留；底部三 Tab 和书架页不变。"
 }
