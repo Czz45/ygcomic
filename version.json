@@ -1,6 +1,6 @@
 {
-  "code": 113,
-  "version": "0.1.113",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.113-20261120/YGComic-v0.1.113-debug.apk",
-  "notes": "分类只保留一个入口：首页原来有两组长得一样的分类标签，点错那组只会筛选书源列表、进不了订阅源，现在删掉多余那组，点分类统一进入该分类的订阅源列表，选好源再进去看书。书架页和底部三 Tab 不变。"
+  "code": 114,
+  "version": "0.1.114",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.114-20261120/YGComic-v0.1.114-debug.apk",
+  "notes": "首页改成二维选择：去掉分类广场钻取，上方直接铺两排全量选择——上排「订阅源」（按订阅链接分组）、下排「分类」（按书源标签），点选后下方书源列表实时按两者交集显示，两排都不选就是全部。书架页和底部三 Tab 不变。"
 }
