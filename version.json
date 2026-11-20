@@ -1,6 +1,6 @@
 {
-  "code": 110,
-  "version": "0.1.110",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.110-20261120/YGComic-v0.1.110-debug.apk",
-  "notes": "首页状态持久化：进详情/搜索后返回首页不再回到顶部、不丢失浏览层级和筛选状态。小说书源列表自动屏蔽没有可浏览分类的源，只显示能正常选分类看书的源。底部三 Tab 和书架页不变。"
+  "code": 111,
+  "version": "0.1.111",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.111-20261120/YGComic-v0.1.111-debug.apk",
+  "notes": "首页分类可选订阅源：分类广场点分类后改为列出该分类下的订阅源，不再跨源直接拉书。点订阅源进入源内页，顶部是该源的分类标签、下方直接列书，点分类只切换下方的书不多跳一级。源内页可返回来路。底部三 Tab 和书架页不变。"
 }
