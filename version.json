@@ -1,6 +1,6 @@
 {
-  "code": 157,
-  "version": "0.1.157",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.157-20261122/YGComic-v0.1.157-release.apk",
-  "notes": "v0.1.157（release 包）\n\n- 漫画 tab 书源列表修复：之前只显示「有可浏览分类」的漫画源，导致只剩 8 个；现在列出全部已启用的漫画源（sourceType==2），数量不再被分类过滤砍掉\n- 漫画 tab 不再按站名黑名单过滤（靠名字识别漫画源不准，已撤销）\n- 条漫图片改为左右铺满（FillWidth），竖长图不留白、不裁切\n- 漫画源钻取返回时清空残留书籍列表，返回更干净\n\n包名保持 com.yg.comic.debug，覆盖安装保住已有书源/书架数据。"
+  "code": 159,
+  "version": "0.1.159",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.159-20261122/YGComic-v0.1.159-release.apk",
+  "notes": "v0.1.159（release 包）\n\n- 新增「超级分辨率」漫画画质增强（默认关闭，可在漫画阅读页设置里开启对比）：用 ncnn + Vulkan 在设备端对网络漫画图片做 AI 超分，线条/细节更清晰（Real-CUGAN / Real-ESRGAN 两种引擎）\n- 模型不内置：在漫画阅读页设置弹窗里选择模型挡位（极速 / 线条2倍推荐 / 线条4倍 / 通用 / 动漫极致）并点「下载模型」自行下载，国内多镜像自动切换；下载后可随时开关对比效果，仅对网络漫画图生效，失败自动回退原图\n- 超分结果内存+磁盘缓存，翻页不重复计算；新增 ncnn native 库（arm64/x86_64 双架构）\n\n包名保持 com.yg.comic.debug，覆盖安装保住已有书源/书架数据。"
 }
