@@ -1,6 +1,6 @@
 {
-  "code": 155,
-  "version": "0.1.155",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.155-20261122/YGComic-v0.1.155-release.apk",
-  "notes": "v0.1.155（首个 release 包）\n\n- 网络漫画「一直加载中」修复：目录到手即显示，图片逐章流式加载（单章 20s 超时），失败有提示可换源重试\n- 图片防盗链：网络漫画图片请求带 Referer（书源站点 host）\n- 首次改发 release 包（R8 压缩，~19MB，体积减半），已验证序列化/JNI/Compose 类运行期不缺\n- 新增「一键导入精品源」：164 个实测能出书的源（小说 148+漫画 16），导入后首页订阅源出现「精品」分组可一键筛\n\n包名保持 com.yg.comic.debug，覆盖安装保住已有书源/书架数据。"
+  "code": 157,
+  "version": "0.1.157",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.157-20261122/YGComic-v0.1.157-release.apk",
+  "notes": "v0.1.157（release 包）\n\n- 漫画 tab 书源列表修复：之前只显示「有可浏览分类」的漫画源，导致只剩 8 个；现在列出全部已启用的漫画源（sourceType==2），数量不再被分类过滤砍掉\n- 漫画 tab 不再按站名黑名单过滤（靠名字识别漫画源不准，已撤销）\n- 条漫图片改为左右铺满（FillWidth），竖长图不留白、不裁切\n- 漫画源钻取返回时清空残留书籍列表，返回更干净\n\n包名保持 com.yg.comic.debug，覆盖安装保住已有书源/书架数据。"
 }
