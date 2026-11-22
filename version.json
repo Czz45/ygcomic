@@ -1,6 +1,6 @@
 {
-  "code": 153,
-  "version": "0.1.153",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.153-20261122/YGComic-v0.1.153-debug.apk",
-  "notes": "首页书源列表排序\n1）小说 Tab 书源列表按「网络状态分层 + 智能权重降序」排列：检测通的在前，存疑次之，未检测再次，不通的沉底；同层内按书源健康度权重从高到低。\n2）漫画 Tab 书源列表同样应用上述排序规则。\n3）排序跟随「设置 → 智能排序」开关：关闭时保持原有顺序。\n4）排序依据跨书源分组归一化，避免小众分组权重失真；网络状态实时更新后列表自动重排。\n"
+  "code": 154,
+  "version": "0.1.154",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.154-20261122/YGComic-v0.1.154-debug.apk",
+  "notes": "首页漫画 Tab 返回逻辑修复\n1）修复漫画 Tab 点进书源内部后系统返回键/手势无法回退、直接退出 APP 的问题。\n2）系统返回按当前 Tab 分流：小说 Tab 沿用原有逐级回退逻辑，漫画 Tab 从源内分类页返回漫画源列表。\n"
 }
