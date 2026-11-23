@@ -1,6 +1,6 @@
 {
-  "code": 162,
-  "version": "0.1.162",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.162-20261123/YGComic-v0.1.162-release.apk",
-  "notes": "v0.1.162（release 包）\n\n- 继续修超分闪退。这次把高通手机专用的一块图形驱动直接打包进了 App，超分时改用这块驱动，绕开手机系统自带驱动的毛病；万一这块驱动加载失败，会自动换回原来的方式，不影响正常看书。\n- 包名保持 com.yg.comic.debug，覆盖安装保住已有书源/书架数据。\n"
+  "code": 163,
+  "version": "0.1.163",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.163-20261123/YGComic-v0.1.163-release.apk",
+  "notes": "v0.1.163（release 包）\n\n- 修超分卡顿。之前超分后的大图一口气缓存 32 张，占好几个 G 内存，手机被拖到整机都卡；现在只留最近 3 张，内存占用大幅下降。\n- 超分默认从「4 倍放大」改成「线条 2 倍」，图更小、漫画线条更清楚，也省内存。\n- 超分计算只用一半 CPU 核心，给系统操作和翻页留一半力气，翻页/滑动不再被抢光资源。\n- 包名保持 com.yg.comic.debug，覆盖安装保住已有书源/书架数据。\n"
 }
