@@ -1,6 +1,6 @@
 {
-  "code": 164,
-  "version": "0.1.164",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.164-20261123/YGComic-v0.1.164-release.apk",
-  "notes": "v0.1.164\n\n- 设置页漫画超分模型选择从一排大小不一的按钮改成下拉列表，跟主题/翻页方向同款组件，点开选、整齐统一。\n- 含 v0.1.162 内置高通驱动 + v0.1.163 治卡顿（缓存 32→3、默认 2 倍、CPU 用一半）。\n- 包名不变，覆盖安装保住书源/书架。"
+  "code": 165,
+  "version": "0.1.165",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.165-20261123/YGComic-v0.1.165-release.apk",
+  "notes": "v0.1.165（对照测试包）\n\n- 临时关闭内置高通 Turnip 驱动，超分改回用系统 Vulkan 驱动，用来排查\"开超分整机卡\"。\n- 装上后开超分翻几页：不卡了=驱动是元凶，正式版就彻底去掉；还卡=算法太重，下一步降分辨率。\n- 其余修复全保留（fp16 闪退修复/缓存32→3/默认2倍/CPU减半/下拉列表）。\n- 包名不变，覆盖安装保住书源/书架。"
 }
