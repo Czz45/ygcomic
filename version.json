@@ -1,6 +1,6 @@
 {
-  "code": 161,
-  "version": "0.1.161",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.161-20261123/YGComic-v0.1.161-release.apk",
-  "notes": "v0.1.161（release 包）\n\n- 修复超级分辨率处理完成后闪退的问题。原因是安卓 Adreno 显卡在半精度（fp16）模式下生成了空的图形管线，一用它就崩溃；现在统一关闭半精度相关开关，全程用稳定模式，GPU/Vulkan 加速保持不变，速度不受影响。\n- 包名保持 com.yg.comic.debug，覆盖安装保住已有书源/书架数据。\n"
+  "code": 162,
+  "version": "0.1.162",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.162-20261123/YGComic-v0.1.162-release.apk",
+  "notes": "v0.1.162（release 包）\n\n- 继续修超分闪退。这次把高通手机专用的一块图形驱动直接打包进了 App，超分时改用这块驱动，绕开手机系统自带驱动的毛病；万一这块驱动加载失败，会自动换回原来的方式，不影响正常看书。\n- 包名保持 com.yg.comic.debug，覆盖安装保住已有书源/书架数据。\n"
 }
