@@ -1,6 +1,6 @@
 {
-  "code": 165,
-  "version": "0.1.165",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.165-20261123/YGComic-v0.1.165-release.apk",
-  "notes": "v0.1.165（对照测试包）\n\n- 临时关闭内置高通 Turnip 驱动，超分改回用系统 Vulkan 驱动，用来排查\"开超分整机卡\"。\n- 装上后开超分翻几页：不卡了=驱动是元凶，正式版就彻底去掉；还卡=算法太重，下一步降分辨率。\n- 其余修复全保留（fp16 闪退修复/缓存32→3/默认2倍/CPU减半/下拉列表）。\n- 包名不变，覆盖安装保住书源/书架。"
+  "code": 166,
+  "version": "0.1.166",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.166-20261123/YGComic-v0.1.166-release.apk",
+  "notes": "v0.1.166\n\n- 修复书架\"文件名排序\"：改为自然排序，01 现在正确排在 002 之前，不再按字符一个一个比。\n- 重写书架排序/筛选弹窗：选项改为竖排布局，不再挤在一起重叠，点选更清楚。\n- 其余功能不变。\n- 包名不变，覆盖安装即可保住已有书架和书源。"
 }
