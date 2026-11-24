@@ -1,6 +1,6 @@
 {
-  "code": 187,
-  "version": "0.1.187",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.187-20261124/YGComic-v0.1.187-release.apk",
-  "notes": "v0.1.187\n\n- 修复崩溃：一键全导入扩展后，用《Manga Million》等部分扩展看漫画时会闪退（报 kotlinx.serialization.protobuf.ProtoNumber 找不到）。\n- 原因：这类扩展运行时要向 APP 借 protobuf 和 RxJava 两个公共库，之前 APP 没打包进去，一借就找不到类而崩。这次按 Mihon 官方的做法把这两个库补齐。\n- 验证：已确认这两个库的类都进了安装包，模拟器覆盖安装正常、能进首页正常用。\n\n签名和上一版一致，覆盖安装不丢数据。Legado/异次元源的取图规则兼容问题仍按原计划在后续版本处理。"
+  "code": 188,
+  "version": "0.1.188",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.188-20261124/YGComic-v0.1.188-release.apk",
+  "notes": "v0.1.188\n\n- 修闪退：一键全导入扩展后，用部分扩展看漫画时还会闪退。这次查到真正原因——扩展启动时要向 APP 借一个叫 protobuf 的东西，咱 APP 之前没登记好，一借就崩，这次登记好了。\n- 新增：设置里加了\"复制日志到剪贴板\"，遇到闪退点一下就能复制崩溃记录发给我。\n- 瘦身：安装包从 59MB 减到 38MB，去掉的是模拟器用的库，真机看书完全不受影响。\n\n签名和上一版一致，覆盖安装不丢数据。"
 }
