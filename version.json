@@ -1,6 +1,6 @@
 {
-  "code": 186,
-  "version": "0.1.186",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.186-20261124/YGComic-v0.1.186-release.apk",
-  "notes": "v0.1.186\n\n- 阅读页底部页数改为按当前章节显示，例如「一击男ONE原作版 · 第1章 · 1 / 42」，不再显示整本累加的大数字（之前会一直涨到 5130）。\n- 图片加载失败时显示「这一页加载失败，轻触重试」，点一下即可重新加载，不再是一片黑屏没有提示。\n- Mihon 商店扩展新增「一键全导入」，书源页可一次把商店里的扩展全部加入（当前 121 个）。\n- 本次实测：Mihon 扩展《一击男ONE原作版》目录 135 章、正文图片正常显示，底部按章页数正确。\n\n签名和上一版一致，覆盖安装不丢数据。Legado/异次元源的取图规则兼容问题仍按原计划在后续版本处理。"
+  "code": 187,
+  "version": "0.1.187",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.187-20261124/YGComic-v0.1.187-release.apk",
+  "notes": "v0.1.187\n\n- 修复崩溃：一键全导入扩展后，用《Manga Million》等部分扩展看漫画时会闪退（报 kotlinx.serialization.protobuf.ProtoNumber 找不到）。\n- 原因：这类扩展运行时要向 APP 借 protobuf 和 RxJava 两个公共库，之前 APP 没打包进去，一借就找不到类而崩。这次按 Mihon 官方的做法把这两个库补齐。\n- 验证：已确认这两个库的类都进了安装包，模拟器覆盖安装正常、能进首页正常用。\n\n签名和上一版一致，覆盖安装不丢数据。Legado/异次元源的取图规则兼容问题仍按原计划在后续版本处理。"
 }
