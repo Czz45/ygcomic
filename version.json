@@ -1,6 +1,6 @@
 {
-  "code": 209,
-  "version": "0.1.209",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.209-20261125/YGComic-v0.1.209-release.apk",
-  "notes": "# YGComic 0.1.209\n\n界面细节调整。\n\n## 调整\n\n- 书架排序弹窗：去掉整屏黑色遮罩，展开时漏斗按钮快速淡出，关闭后恢复\n- 首页悬浮 tab：去掉自身底色和阴影，只留悬浮图标文字\n- 书架文件夹：改成跟普通封面一样大，保留叠层观感\n- 漫画阅读页：背景全黑（含图片之间缝隙），加载/失败占位也改黑配白字\n\n签名不变，覆盖安装不丢数据。\n"
+  "code": 210,
+  "version": "0.1.210",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.210-20261125/YGComic-v0.1.210-release.apk",
+  "notes": "# YGComic 0.1.210\n\n首页底部栏调整。\n\n## 调整\n\n- 首页悬浮 tab 恢复边框、底色和阴影，位置固定抬高刚好避开系统手势条，不随手势条显隐上下移动\n- 首页内容铺满到屏幕底，tab 纯悬浮盖在内容上方、不占布局不挡内容，内容可滚到 tab 后面，最后一张书源卡片能完整看到\n\n封面展开全屏动效本期未包含，后续单独做。\n\n签名不变，覆盖安装不丢数据。\n"
 }
