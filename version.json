@@ -1,6 +1,6 @@
 {
-  "code": 201,
-  "version": "0.1.201",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.201-20261125/YGComic-v0.1.201-release.apk",
-  "notes": "v0.1.201\n\n# YGComic 0.1.201\n\n修「简介变成一整页 HTML」。\n\n## 现象\n\n有些源（你截图里那批异次元源，比如国漫网）详情页的「简介」是一大坨 `<!DOCTYPE html><html><head><title>...`，整页源码堆在简介区里。\n\n## 原因\n\n这类源的 `ruleBookInfo.intro` 空着（或映射没填），Rust 解析内核取简介时，规则为空就退化成把整个详情页 HTML 原样塞给 `intro` 字段。页面照原样渲染，就成了一屏源码。\n\n## 这版怎么改的\n\n简介在进入详情页之前统一过一道清洗（所有源都走这条路，不止异次元）：\n\n1. 判断这串是不是 HTML（`<!doctype`、`<html`、或者五个以上正规标签）\n2. 是 HTML 就先取站点自己的 `<meta name=\"description\">` / `og:description`——这行本来就是站点写好的简介，最干净\n3. 取不到就剔掉 head/script/style，再剥标签、还原 `&nbsp;` `&amp;` `&#39;` 这类实体，压成一段\n4. 普通文本不动；超过 600 字截断，别让简介把整页顶下去\n\n用你截图那页的真实结构验过：清洗后是一段「国漫网为您提供海贼王漫画全集下拉式免费在线观看。漫画简介：拥有财富、名声、权力……」，不再是源码。\n\n书名的清洗也一起做了（有的源书名里带标签）。\n\n## 没动的\n\nRust 内核里「规则为空就返回整页 HTML」这个行为本身没改（改它要重编 aarch64 的 .so），这版在 Kotlin 侧统一收口，效果一样，风险小。\n\n签名不变，覆盖安装不丢数据。\n"
+  "code": 202,
+  "version": "0.1.202",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.202-20261125/YGComic-v0.1.202-release.apk",
+  "notes": "v0.1.202\n\n# YGComic 0.1.202\n\n小说能听书了：接上系统 TTS 朗读，整章连念、自动翻页、自动进下一章。\n\n## 之前为啥像「没这功能」\n\n顶栏那个 ▶ 按钮之前就挂了系统 TextToSpeech，但三个毛病：只念当前这一页，念完就停；初始化写成了自引用（`var created = TextToSpeech(...) { created ... }`），系统回调来早一点时拿到 null，按钮点了没声音也没提示；语言设置失败也一声不响。所以实际体验等于没有。\n\n## 这版改的\n\n1. 初始化修好：回调先到不再丢，拿不到就用兜底实例；`setLanguage` 失败会退回默认语言并提示「缺中文语音包」\n2. 整章连念：从整章所有段落收集片段（不是只念当前页），一段接一段往下念\n3. 自动翻页：高亮念到下一页时阅读器自己翻过去\n4. 自动进下一章：本章念完自动跳下一章接着念，到最后一章才停\n5. 系统完全没有 TTS 时弹 Toast「系统文字转语音不可用」，不再是死按钮\n6. 设置里新增「朗读语速」：0.8× / 1.0× / 1.2× / 1.5× / 1.8×\n7. 退出阅读器先停朗读再 shutdown 引擎，不在后台偷偷念\n\n## 实测（模拟器 Android 16，真跑了一遍）\n\n导入一本 txt 小说 → 点朗读：\n\n- logcat 里 Google TTS 明确收到 `Synthesis request for locale zho-CHN`，并以 24kHz speech 音轨播出去（`dumpsys audio` 能看到 `com.google.android.tts` 的 AudioTrack 起停）\n- 高亮跟着段落走：第一段 → 第二段末尾，页面没乱跳\n- 整章念完自动停，按钮回到 ▶，无 Toast 报错、无卡死\n\n## 注意\n\n声音是系统引擎出的，机器上没有中文语音包就不会出声（App 会提示）。进 系统设置 → 文字转语音，装/下中文语音即可。这版没打包离线引擎。\n\n签名不变，覆盖安装不丢数据。\n"
 }
