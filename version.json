@@ -1,6 +1,6 @@
 {
-  "code": 217,
-  "version": "0.1.217",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.217-20261126/YGComic-v0.1.217-release.apk",
-  "notes": "# YGComic 0.1.217（测试版）\n\n小说进场遮挡修正。\n\n## 修正\n\n- 去掉小说进场时盖在封面动画外面的黑、白两层：背景实色原本画在绑封面共享标记的同一层、跟着飞进 overlay 盖住了封面，现在把背景挪到独立兄弟层、飞行时不再遮挡，封面展开全程可见\n- 背景改用淡入过渡，顺手消除了深灰到设置色的突变\n\n漫画进场动画、之前修好的小说不闪与返回收回都保留。签名不变，覆盖安装不丢数据。\n"
+  "code": 218,
+  "version": "0.1.218",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.218-20261126/YGComic-v0.1.218-release.apk",
+  "notes": "# YGComic 0.1.218（测试版）\n\n小说进场灰层修正。\n\n## 修正\n\n- 封面飞行时全屏灰蒙蒙的压暗层：背景不再跟着封面动画同时淡入，飞行期间保持全透明、只让封面在动，飞完再淡入；正文照常提前加载，落位即出文字\n\n漫画进场动画未改动。签名不变，覆盖安装不丢数据。\n"
 }
