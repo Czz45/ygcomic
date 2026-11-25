@@ -1,6 +1,6 @@
 {
-  "code": 208,
-  "version": "0.1.208",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.208-20261125/YGComic-v0.1.208-release.apk",
-  "notes": "# YGComic 0.1.208\n\n书架筛选、排序弹窗位置微调。\n\n## 调整\n\n- 弹窗右上角改为直接盖住右上角的漏斗筛选按钮（贴合），不再显示在按钮下方\n- 展开动画保持不变\n\n签名不变，覆盖安装不丢数据。\n"
+  "code": 209,
+  "version": "0.1.209",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.209-20261125/YGComic-v0.1.209-release.apk",
+  "notes": "# YGComic 0.1.209\n\n界面细节调整。\n\n## 调整\n\n- 书架排序弹窗：去掉整屏黑色遮罩，展开时漏斗按钮快速淡出，关闭后恢复\n- 首页悬浮 tab：去掉自身底色和阴影，只留悬浮图标文字\n- 书架文件夹：改成跟普通封面一样大，保留叠层观感\n- 漫画阅读页：背景全黑（含图片之间缝隙），加载/失败占位也改黑配白字\n\n签名不变，覆盖安装不丢数据。\n"
 }
