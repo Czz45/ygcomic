@@ -1,6 +1,6 @@
 {
-  "code": 215,
-  "version": "0.1.215",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.215-20261126/YGComic-v0.1.215-release.apk",
-  "notes": "# YGComic 0.1.215（测试版）\n\n文件夹动画细节修正。\n\n## 修正\n\n- 首次进 APP 不再播文件夹动画：改为只有真正切换文件夹层级才触发转场，初次加载数据不再误播\n- 封面收回不再被裁：去掉文件夹卡片外层的圆角裁剪，封面落位时可略微超出网格，每张封面自身的圆角外观保持不变\n\n签名不变，覆盖安装不丢数据。\n"
+  "code": 216,
+  "version": "0.1.216",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.216-20261126/YGComic-v0.1.216-release.apk",
+  "notes": "# YGComic 0.1.216（测试版）\n\n小说进场动画修正。\n\n## 修正\n\n- 小说封面展开不再先露黑灰底和白闪：封面共享标记挪到一进阅读器就存在的稳定外壳，封面第一帧就起飞、盖住背景切换和加载占位，落位直接出文字\n- 保留封面圆角、返回收回动画，以及此前修好的加载不闪；漫画进场动画未改动\n\n签名不变，覆盖安装不丢数据。\n"
 }
