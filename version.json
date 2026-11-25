@@ -1,6 +1,6 @@
 {
-  "code": 214,
-  "version": "0.1.214",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.214-20261126/YGComic-v0.1.214-release.apk",
-  "notes": "# YGComic 0.1.214（测试版）\n\n文件夹封面飞出动画细节修正。\n\n## 修正\n\n- 飞行层级：飞出与返回时，飞行中的封面始终盖在普通卡片上方，落位后恢复正常层级\n- 返回层级：与飞出方向保持一致，不再一个在下、一个在上\n- 首次进 APP：书架初次加载时文件夹不再自己播一次动画，只在真正点进文件夹时才飞出\n\n签名不变，覆盖安装不丢数据。\n"
+  "code": 215,
+  "version": "0.1.215",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.215-20261126/YGComic-v0.1.215-release.apk",
+  "notes": "# YGComic 0.1.215（测试版）\n\n文件夹动画细节修正。\n\n## 修正\n\n- 首次进 APP 不再播文件夹动画：改为只有真正切换文件夹层级才触发转场，初次加载数据不再误播\n- 封面收回不再被裁：去掉文件夹卡片外层的圆角裁剪，封面落位时可略微超出网格，每张封面自身的圆角外观保持不变\n\n签名不变，覆盖安装不丢数据。\n"
 }
