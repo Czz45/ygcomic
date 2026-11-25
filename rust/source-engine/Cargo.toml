@@ -1,0 +1,37 @@
+[package]
+name = "source_engine"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "source_engine"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+jni = "0.21"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# 网络：阻塞式，便于在 JNI 线程里直接调用
+ureq = { version = "2", features = ["json", "charset"] }
+# HTML/CSS 选择器
+scraper = "0.20"
+# XPath 1.0
+sxd-xpath = "0.4"
+sxd-document = "0.3"
+# 编码探测（GBK 老站）
+encoding_rs = "0.8"
+# 正则
+regex = "1"
+# URL 解析/拼接
+url = "2"
+# JS 引擎：规则里的 @js / <js> 需要，legado 生态大量使用。boa_engine 纯 Rust 可交叉编译。
+boa_engine = "0.19"
+# 日志
+log = "0.4"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

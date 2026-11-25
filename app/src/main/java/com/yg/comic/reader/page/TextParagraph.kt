@@ -1,0 +1,19 @@
+// 来源：legado app/src/main/java/io/legado/app/ui/book/read/page/entities/TextParagraph.kt（照搬，仅改包名）
+package com.yg.comic.reader.page
+
+@Suppress("unused", "MemberVisibilityCanBePrivate")
+data class TextParagraph(
+    var num: Int,
+    val textLines: ArrayList<TextLine> = arrayListOf(),
+) {
+    val text: String get() = textLines.joinToString("") { it.text }
+    val length: Int get() = text.length
+    val firstLine: TextLine get() = textLines.first()
+    val lastLine: TextLine get() = textLines.last()
+    val chapterIndices: IntRange get() = firstLine.chapterPosition..lastLine.chapterPosition + lastLine.charSize
+    val chapterPosition: Int get() = firstLine.chapterPosition
+    val realNum: Int get() = firstLine.paragraphNum
+    val sourceIndex: Int get() = firstLine.sourceIndex
+    val isParagraphEnd: Boolean get() = lastLine.isParagraphEnd
+
+}
