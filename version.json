@@ -1,6 +1,6 @@
 {
-  "code": 207,
-  "version": "0.1.207",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.207-20261125/YGComic-v0.1.207-release.apk",
-  "notes": "# YGComic 0.1.207\n\n排序弹窗动效重做，换成澎湃原生的那种展开感觉。\n\n## 修复\n\n- 书架筛选、排序菜单：改用 miuix 原生的级联弹窗动画（从按钮处揭示着展开、放大淡入），删掉之前叠在一起的几段手写动画，不再有\"位移+展开\"打架的感觉\n- 弹窗贴着筛选按钮展开，不会弹到屏幕底部\n\n签名不变，覆盖安装不丢数据。\n"
+  "code": 208,
+  "version": "0.1.208",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.208-20261125/YGComic-v0.1.208-release.apk",
+  "notes": "# YGComic 0.1.208\n\n书架筛选、排序弹窗位置微调。\n\n## 调整\n\n- 弹窗右上角改为直接盖住右上角的漏斗筛选按钮（贴合），不再显示在按钮下方\n- 展开动画保持不变\n\n签名不变，覆盖安装不丢数据。\n"
 }
