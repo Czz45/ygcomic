@@ -300,6 +300,8 @@ fun ReaderScreen(
                 // 飞行全程保持封面圆角：sharedBounds 默认在 overlay 里按直角矩形裁剪，
                 // 必须显式给 clipInOverlayDuringTransition 一个圆角 Shape，中途才不变直角。
                 clipInOverlayDuringTransition = OverlayClip(RoundedCornerShape(14.dp)),
+                // 阅读页封面始终压在其它共享元素之上，避免和文件夹叠层封面打平后顺序不定
+                zIndexInOverlay = 12f,
             )
         }
     } else Modifier
