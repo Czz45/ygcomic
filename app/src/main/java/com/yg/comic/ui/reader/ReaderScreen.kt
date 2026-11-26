@@ -48,6 +48,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
 import coil3.request.ImageRequest
+import coil3.request.ErrorResult
+import coil3.request.SuccessResult
 import coil3.network.NetworkHeaders
 import coil3.network.httpHeaders
 import coil3.BitmapImage
@@ -68,6 +70,7 @@ import com.yg.comic.sr.preload.PreloadSrQueue
 import com.yg.comic.sr.preload.SrTrace
 import com.yg.comic.sr.preload.logicalKey
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import top.yukonga.miuix.kmp.basic.*
@@ -242,6 +245,27 @@ fun ReaderScreen(
             snapshotFlow { pagerState.currentPage }.collect { view ->
                 if (restored) vm.onPageChanged((view * pagesPerView).coerceIn(0, (pages.size - 1).coerceAtLeast(0)))
             }
+        }
+    }
+
+    // 漫画当前屏优先：进页面/翻页后先让当前页自己发请求，隔一小段再预热后面两页。
+    // 否则条漫一进页面，可见的几页一起抢 Coil 的并发槽位，当前屏反而被后面的页拖慢。
+    LaunchedEffect(current, pages.size, isNetworkComic, referer, bookId) {
+        if (!isNetworkComic || pages.isEmpty()) return@LaunchedEffect
+        for (offset in 1..2) {
+            val idx = current + offset
+            if (idx !in pages.indices) continue
+            delay(120L)
+            val req = ImageRequest.Builder(context)
+                .data(pages[idx])
+                .httpHeaders(
+                    NetworkHeaders.Builder().apply {
+                        if (referer.isNotBlank()) set("Referer", referer)
+                    }.build()
+                )
+                .build()
+            // 预热结果落进 Coil 内存缓存，后面 Compose 到这一页时直接命中，不再等网络。
+            withContext(Dispatchers.IO) { runCatching { context.imageLoader.execute(req) } }
         }
     }
 
