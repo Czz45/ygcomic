@@ -1,6 +1,6 @@
 {
-  "code": 232,
-  "version": "0.1.232",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.232-20261126/YGComic-v0.1.232-release.apk",
-  "notes": "## YGComic 0.1.232\n\n### 网络朗读：内置常用服务 + 自定义\n\n之前网络朗读只有一个写死的服务商，界面上只让填 Token——地址、模型、协议全在代码里，用户既看不到也没法换。现在改成：\n\n**内置预设（点一下就套好地址 / 模型 / 默认音色）**\n\n- 小米 MiMo（原方案，chat/completions + `api-key` 头）\n- OpenAI（官方 `/v1/audio/speech`，`gpt-4o-mini-tts`）\n- 硅基流动 SiliconFlow（OpenAI 兼容 `/v1/audio/speech`，CosyVoice2）\n- 自定义（任意 OpenAI 兼容服务 / 自建 / 中转）\n\n**自定义配置可手填**\n\n- 服务地址 Base URL：可以填服务根地址（`https://xxx.com` 或 `https://xxx.com/v1`），App 会按协议自动补 `/v1/audio/speech` 或 `/v1/chat/completions`；也可以直接贴完整 endpoint。\n- 模型名、音色 id（自定义服务没有固定音色表，按服务商文档填，可留空）。\n- 接口协议：OpenAI speech（直接返回二进制音频）/ chat 兼容（返回 base64 音频）。\n- 认证方式：`Bearer` / `api-key` / `x-api-key` / 不加认证头。\n\n**其它**\n\n- 新增第二种协议实现（`/v1/audio/speech` 二进制返回），不再只会解析 base64。\n- 报错会带上服务端返回的原文（截断 300 字），402/403 这类一眼能看出是谁的问题。\n- 切换预设会清掉上一家的地址/模型覆盖并补上默认音色，避免跨服务串参数。\n- 音频缓存 key 纳入地址与模型，换服务不会命中旧缓存。\n"
+  "code": 233,
+  "version": "0.1.233",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.233-20261126/YGComic-v0.1.233-release.apk",
+  "notes": "## YGComic 0.1.233\n\n### 朗读报错不再只说「HTTP 402」\n\n- 服务端错误体解析出来，翻成人话再显示：`401` Token 无效 / `402` 账户余额不足 / `403` 没开通该接口 / `404` 地址不对 / `429` 限流 / `5xx` 服务端错误，并附上服务端原文片段。\n- 两种协议（chat 兼容、OpenAI speech）统一走这套提示。\n\n### 实测结论（小米 MiMo）\n\n- 正确 Token：`402 Insufficient account balance (insufficient_balance)` —— Key 有效，账号没有可用额度。\n- 错误 Token：`401 Invalid API Key` —— 可见 402 不是鉴权问题。\n- 也就是说代码链路没问题，是账号侧没额度：需要去平台充值/开通，或改用其它预设（OpenAI / 硅基流动 / 自定义）。\n"
 }
