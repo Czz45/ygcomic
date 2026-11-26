@@ -430,6 +430,12 @@ private fun NovelReaderContent(
             for (i in pages.indices) {
                 if (pages[i].startOffset <= sp.chapterOffset) p = i else break
             }
+            // 边界兜底：保存的偏移比第一页起始偏移还小（正文前置标题/空行被重排、或偏移落在章首之前）时，
+            // 上面的循环会一页都没匹配上、直接回第 0 页，看起来就是"回到章首"。
+            // 这种情况改为取"最接近的一页"，也就是第一个 startOffset >= 目标偏移的页。
+            if (p == 0 && pages.isNotEmpty() && pages[0].startOffset > sp.chapterOffset) {
+                p = pages.indexOfFirst { it.startOffset >= sp.chapterOffset }.coerceAtLeast(0)
+            }
             p
         } else 0
     }
@@ -611,6 +617,28 @@ private fun NovelReaderContent(
         snapshotFlow { listState.isScrollInProgress to listState.firstVisibleItemIndex }.collect { (scrolling, para) ->
             if (scrolling) userDragging = true
             else if (userDragging) { userDragging = false; saveHere(paraToPage(para)) }
+        }
+    }
+
+    // 退出/切后台兜底保存：进度原来只在"滑动松手"时写库，点返回键过快、只用点按翻页、
+    // 或者刚进来没滑动就退出，这一次阅读压根不会落库。这里在离开阅读页、退到后台各补存一次，
+    // 保证最后一次位置一定进库，重开能回到原处。
+    fun saveCurrentPosition() {
+        val idx = if (paged) pagerState.currentPage else paraToPage(listState.firstVisibleItemIndex)
+        saveHere(idx.coerceIn(0, pages.lastIndex.coerceAtLeast(0)))
+    }
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner, pages, currentChapterIndex) {
+        val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
+            if (event == androidx.lifecycle.Lifecycle.Event.ON_STOP) {
+                runCatching { saveCurrentPosition() }
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+            // 离开阅读页（返回书架 / 换书）也补一次
+            runCatching { saveCurrentPosition() }
         }
     }
 
