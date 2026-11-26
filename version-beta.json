@@ -1,6 +1,6 @@
 {
-  "code": 233,
-  "version": "0.1.233",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.233-20261126/YGComic-v0.1.233-release.apk",
-  "notes": "## YGComic 0.1.233\n\n### 朗读报错不再只说「HTTP 402」\n\n- 服务端错误体解析出来，翻成人话再显示：`401` Token 无效 / `402` 账户余额不足 / `403` 没开通该接口 / `404` 地址不对 / `429` 限流 / `5xx` 服务端错误，并附上服务端原文片段。\n- 两种协议（chat 兼容、OpenAI speech）统一走这套提示。\n\n### 实测结论（小米 MiMo）\n\n- 正确 Token：`402 Insufficient account balance (insufficient_balance)` —— Key 有效，账号没有可用额度。\n- 错误 Token：`401 Invalid API Key` —— 可见 402 不是鉴权问题。\n- 也就是说代码链路没问题，是账号侧没额度：需要去平台充值/开通，或改用其它预设（OpenAI / 硅基流动 / 自定义）。\n"
+  "code": 234,
+  "version": "0.1.234",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.234-20261126/YGComic-v0.1.234-release.apk",
+  "notes": "## YGComic 0.1.234\n\n### MiMo 预设对齐官方 SDK 写法\n\n- 认证头由 `api-key` 改成 `Authorization: Bearer`（与官方 `OpenAI(api_key=..., base_url=\"https://api.xiaomimimo.com/v1\")` 示例一致；实测两种头服务端都认，但官方写法最稳）。\n- 默认音色改为官方预置的 `mimo_default`（中国集群默认即「冰糖」）。\n- 预设说明里写明：TTS 限时免费不消耗额度，但账号余额 ≤0 时仍会返回 `402 Insufficient account balance`，充任意金额即可恢复。\n\n### 补充说明（实测）\n\n- MiMo 只有 `chat/completions` 这一种协议（OpenAI SDK 格式），没有 `/v1/audio/speech`，后者在该域返回 404。\n- Token Plan 订阅的 Key 是 `tp-` 开头专用 Key + 专用域名（`token-plan-cn.xiaomimimo.com/v1`）；`sk-` 开头的按量 Key 在该域名下会 401。\n"
 }
