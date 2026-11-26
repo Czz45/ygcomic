@@ -248,24 +248,33 @@ fun ReaderScreen(
         }
     }
 
-    // 漫画当前屏优先：进页面/翻页后先让当前页自己发请求，隔一小段再预热后面两页。
-    // 否则条漫一进页面，可见的几页一起抢 Coil 的并发槽位，当前屏反而被后面的页拖慢。
-    LaunchedEffect(current, pages.size, isNetworkComic, referer, bookId) {
-        if (!isNetworkComic || pages.isEmpty()) return@LaunchedEffect
-        for (offset in 1..2) {
+    // 漫画当前屏优先 + 前后页预热：进章/翻页后先让当前页自己发请求，再按"近→远"把前后各两页铺进缓存。
+    // 网络漫画落到 Coil 磁盘+内存缓存，本地漫画落到进程级内存 LRU（和显示用的是同一个 key），
+    // 这样退出重进、上下一翻都能直接命中，不再出现"这一页还在转圈"。
+    // 顺序固定 ±1 再 ±2、每页之间留 90ms，避免预热反过来抢当前页的解码和带宽。
+    LaunchedEffect(current, pages.size, isNetworkComic, isPdf, pdfPath, referer, bookId) {
+        if (pages.isEmpty()) return@LaunchedEffect
+        if (isPdf) return@LaunchedEffect // PDF 走 PdfLive 单页渲染，预热无意义还会白烧 CPU
+        for (offset in listOf(1, -1, 2, -2)) {
             val idx = current + offset
             if (idx !in pages.indices) continue
-            delay(120L)
-            val req = ImageRequest.Builder(context)
-                .data(pages[idx])
-                .httpHeaders(
-                    NetworkHeaders.Builder().apply {
-                        if (referer.isNotBlank()) set("Referer", referer)
-                    }.build()
-                )
-                .build()
-            // 预热结果落进 Coil 内存缓存，后面 Compose 到这一页时直接命中，不再等网络。
-            withContext(Dispatchers.IO) { runCatching { context.imageLoader.execute(req) } }
+            delay(90L)
+            val page = pages[idx]
+            if (isNetworkComic) {
+                val req = ImageRequest.Builder(context)
+                    .data(page)
+                    .httpHeaders(
+                        NetworkHeaders.Builder().apply {
+                            if (referer.isNotBlank()) set("Referer", referer)
+                        }.build()
+                    )
+                    .build()
+                // 预热结果落进 Coil 缓存，后面 Compose 到这一页时直接命中，不再等网络。
+                withContext(Dispatchers.IO) { runCatching { context.imageLoader.execute(req) } }
+            } else {
+                // 本地漫画：先按显示尺寸解码进内存 LRU，后续页面直接用，不再和当前页抢解码。
+                withContext(Dispatchers.IO) { runCatching { imageCache.bitmap(page, 1600, 2400) } }
+            }
         }
     }
 

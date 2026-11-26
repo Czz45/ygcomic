@@ -20,15 +20,33 @@ class ImageCache(context: Context, maxKb: Int = (Runtime.getRuntime().maxMemory(
     suspend fun bitmap(path: String, reqW: Int, reqH: Int): Bitmap? = withContext(Dispatchers.IO) {
         val key = "$path|${reqW}x$reqH"
         memory.get(key)?.let { return@withContext it }
-        val options = BitmapFactory.Options().apply { inPreferredConfig = Bitmap.Config.RGB_565 }
+        // 先只读尺寸，按 2 的幂算采样率：大图上"整张解码再缩放"既慢又吃内存，
+        // 这是本地漫画首屏慢的主因，改成解码时就直接采到接近目标尺寸。
+        val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        BitmapFactory.decodeFile(path, bounds)
+        val options = BitmapFactory.Options().apply {
+            inPreferredConfig = Bitmap.Config.RGB_565
+            var sample = 1
+            if (reqW > 0 && reqH > 0 && bounds.outWidth > 0 && bounds.outHeight > 0) {
+                while (bounds.outWidth / (sample * 2) >= reqW && bounds.outHeight / (sample * 2) >= reqH) {
+                    sample *= 2
+                }
+            }
+            inSampleSize = sample
+        }
         val bmp = BitmapFactory.decodeFile(path, options) ?: return@withContext null
+        // 采样后仍比目标尺寸大的才做一次精确缩放；差不多就跳过，省一次全图拷贝。
         val sampled = if (reqW > 0 && reqH > 0 && (bmp.width > reqW || bmp.height > reqH)) {
             val ratio = maxOf(bmp.width.toFloat() / reqW, bmp.height.toFloat() / reqH)
-            val nw = (bmp.width / ratio).toInt().coerceAtLeast(1)
-            val nh = (bmp.height / ratio).toInt().coerceAtLeast(1)
-            val scaled = Bitmap.createScaledBitmap(bmp, nw, nh, true)
-            bmp.recycle()
-            scaled
+            if (ratio <= 1.15f) {
+                bmp
+            } else {
+                val nw = (bmp.width / ratio).toInt().coerceAtLeast(1)
+                val nh = (bmp.height / ratio).toInt().coerceAtLeast(1)
+                val scaled = Bitmap.createScaledBitmap(bmp, nw, nh, true)
+                bmp.recycle()
+                scaled
+            }
         } else bmp
         memory.put(key, sampled)
         sampled

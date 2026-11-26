@@ -804,7 +804,7 @@ private fun CollectionCard(
                             animatedVisibilityScope = folderScope,
                             enter = EnterTransition.None,
                             exit = ExitTransition.None,
-                            zIndexInOverlay = 10f,
+                            zIndexInOverlay = 8f,
                         )
                     }
                 } else Modifier
@@ -840,7 +840,7 @@ private fun CollectionCard(
                             animatedVisibilityScope = folderScope,
                             enter = EnterTransition.None,
                             exit = ExitTransition.None,
-                            zIndexInOverlay = 10f,
+                            zIndexInOverlay = 9f,
                         )
                     }
                 } else Modifier
