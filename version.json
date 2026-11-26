@@ -1,6 +1,6 @@
 {
-  "code": 220,
-  "version": "0.1.220",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.220-20261126/YGComic-v0.1.220-release.apk",
-  "notes": "# YGComic 0.1.220（测试版）\n\n小说进场封面重影修正。\n\n## 修正\n\n- 进场飞行时看到两个封面叠着飞、其中一个不淡出：去掉进场端多画的那张封面，飞行期只剩书架封面飞过来并正常淡出，正文在黑底上渐显（对齐漫画那套）\n- 之前修的发白、白闪、落位淡入都保留，漫画与文件夹动画未改动\n\n签名不变，覆盖安装不丢数据。\n"
+  "code": 221,
+  "version": "0.1.221",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.221-20261126/YGComic-v0.1.221-release.apk",
+  "notes": "# YGComic 0.1.221（测试版）\n\n漫画当前屏优先加载。\n\n## 改进\n- 进入漫画或翻页后，先让当前页出图，再隔 120ms 顺序预热后面两页：往下滑时下一页往往已经就绪，少一次\"加载中…\"\n- 只预热后两页，不预先拉整章，流量和内存不会暴涨\n- 小说阅读与封面进场动画未改动\n\n签名不变，覆盖安装不丢数据。\n"
 }
