@@ -1,6 +1,6 @@
 {
-  "code": 234,
-  "version": "0.1.234",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.234-20261126/YGComic-v0.1.234-release.apk",
-  "notes": "## YGComic 0.1.234\n\n### MiMo 预设对齐官方 SDK 写法\n\n- 认证头由 `api-key` 改成 `Authorization: Bearer`（与官方 `OpenAI(api_key=..., base_url=\"https://api.xiaomimimo.com/v1\")` 示例一致；实测两种头服务端都认，但官方写法最稳）。\n- 默认音色改为官方预置的 `mimo_default`（中国集群默认即「冰糖」）。\n- 预设说明里写明：TTS 限时免费不消耗额度，但账号余额 ≤0 时仍会返回 `402 Insufficient account balance`，充任意金额即可恢复。\n\n### 补充说明（实测）\n\n- MiMo 只有 `chat/completions` 这一种协议（OpenAI SDK 格式），没有 `/v1/audio/speech`，后者在该域返回 404。\n- Token Plan 订阅的 Key 是 `tp-` 开头专用 Key + 专用域名（`token-plan-cn.xiaomimimo.com/v1`）；`sk-` 开头的按量 Key 在该域名下会 401。\n"
+  "code": 235,
+  "version": "0.1.235",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.235-20261126/YGComic-v0.1.235-release.apk",
+  "notes": "## YGComic 0.1.235\n\n### 朗读/试听改为流式，点下去就出声\n\n- 之前走非流式接口：必须整段合成完、拿到 200KB 音频，再交给 MediaPlayer，所以点完要等好一会儿。\n- 现在 MiMo TTS 走 `stream=true` + `format=pcm16`（24kHz 单声道），App 用 AudioTrack 边收边播：首包到达就出声。\n- 实测：同一句文本，整段流式传输 1.2 秒，首包 200ms 量级。\n- 收流过程中把 PCM 攒成标准 WAV 进缓存，下一段/二次播放直接命中缓存秒起。\n- 流式失败自动回退系统朗读，并说明原因；中途停止会取消请求、释放 AudioTrack，不留后台占用。\n\n### 试听有实时反馈了\n\n- 状态从「合成中…」→「已出声 · 首包 XXXms」→「播放中…」→「试听完成」，左侧有状态圆点，主按钮忙碌时变成「停止」。\n- 不会再出现点完干等着、以为没反应的情况。\n\n### 朗读设置页重排\n\n- 分块卡片：配置 / 引擎 / 服务 / 音色 / 输出 / 试听，标题分组、留白分隔，不再是一长条挤在一起。\n- 选中态统一为中性实心块（去掉整块品牌蓝），选项自动换行不挤成条。\n- 配置卡上直接显示「引擎 · 服务商 · 音色 · 当前使用」，一眼知道这套是什么。\n\n### 音色按官方文档补齐\n\n- 官方预置音色 9 个全部可点选，并标注语言性别：`mimo_default`（跟随集群）、冰糖/茉莉（中文女）、苏打/白桦（中文男）、Mia/Chloe（英文女）、Milo/Dean（英文男）。\n"
 }
