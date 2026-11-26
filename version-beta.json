@@ -1,6 +1,6 @@
 {
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.225-20261126/YGComic-v0.1.225-release.apk",
-  "version": "0.1.225",
-  "code": 225,
-  "notes": "## 0.1.225 测试版\n\n**新增：测试版更新通道开关（设置 → 关于与更新）**\n- 默认关闭：只检测正式版（GitHub releases/latest + version.json，天然排除 prerelease）\n- 打开后：检测最新测试版（releases 列表取最新一条，含 prerelease + version-beta.json）\n- 检查更新的摘要会显示当前检测的是「正式版」还是「测试版」\n- 仓库目前没有任何正式版，关闭开关点检查会明确提示「暂无正式版」，不再报\"检测失败\"\n\n**仓库整理**\n- 已删除历史全部正式版 release（0.1.x 共 144 个），现在仓库里只有测试版\n\n（测试版）\r\n"
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.226-20261126/YGComic-v0.1.226-release.apk",
+  "version": "0.1.226",
+  "code": 226,
+  "notes": "## 0.1.226 测试版\n\n**修复：网络小说重新进入回到本章开头**\n- 恢复进度时，若保存的章内偏移比第一页起始偏移还小（正文前置标题/空行被重排），原来的匹配循环会一页都对不上、直接回第 0 页\n- 现在这种情况改为取\"最接近的一页\"（第一个 startOffset ≥ 目标偏移的页），不再退回章首\n\n**修复：小说进度可能在退出时没写库**\n- 原来只在\"滑动松手\"时保存；点返回键过快、只点按翻页、刚进来没滑动就退出，这次阅读就不会落库\n- 现在离开阅读页、退到后台（ON_STOP）时各强制补存一次\n\n（测试版）\r\n"
 }
