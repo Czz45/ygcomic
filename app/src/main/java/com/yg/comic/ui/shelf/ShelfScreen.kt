@@ -294,10 +294,15 @@ fun ShelfScreen(
                                     onLongPress = { longPressBook = b },
                                     sharedTransitionScope = sharedTransitionScope,
                                     animatedVisibilityScope = animatedVisibilityScope,
-                                    // 只有文件夹卡片最上面那张主封面参与飞出/收回，与文件夹内第一项配对；
-                                    // 底下两张不绑 folder-* key，避免同一张图挂两套 sharedBounds 抢 overlay。
-                                    folderScope = if (index < 1) acScope else null,
-                                    folderSharedScope = if (index < 1) sharedTransitionScope else null,
+                                    // 只给前三项绑文件夹飞出 key，避免同一 key 在列表里出现多份
+                                    folderScope = if (index < 3) acScope else null,
+                                    folderSharedScope = if (index < 3) sharedTransitionScope else null,
+                                    // 与合集卡片那叠的层级严格对应：第 1 项 10、第 2 项 9、第 3 项 8
+                                    folderZIndex = when (index) {
+                                        0 -> 10f
+                                        1 -> 9f
+                                        else -> 8f
+                                    },
                                 )
                             }
                         }
@@ -601,6 +606,9 @@ private fun BookCard(
     // 文件夹飞出：用 AnimatedContent 自己的 scope，与合集卡片封面按 book id 配对
     folderScope: AnimatedVisibilityScope? = null,
     folderSharedScope: SharedTransitionScope? = null,
+    // 该封面在文件夹那叠里的层级（列表第 1 项 = 最上层 10，第 2 项 9，第 3 项 8）。
+    // 两端层级必须一一对应，否则飞行/落位时同层打平，谁在上面就靠运气。
+    folderZIndex: Float = 10f,
 ) {
     // 封面展开共享元素：书架封面与阅读页根容器绑同一个 key，返回自动收回。
     // sharedBounds 是 SharedTransitionScope 的成员扩展，必须在 with(scope) 内调用，不能顶层 import。
@@ -626,7 +634,7 @@ private fun BookCard(
                 // 落位转场结束即不再渲染进 overlay，自动恢复正常层级。只作用于 folder-* 这套。
                 enter = EnterTransition.None,
                 exit = ExitTransition.None,
-                zIndexInOverlay = 10f,
+                zIndexInOverlay = folderZIndex,
             )
         }
     } else Modifier
@@ -798,9 +806,17 @@ private fun CollectionCard(
             // 斜角随 folder 转场进度从 16° 平滑收正，和 sharedBounds 绑在同一个图片节点上，
             // 飞出时 overlay 才能带着斜角一起飞，到落位（Visible→PostExit 走完）才归 0。
             if (previewBooks.size >= 3) {
-                // 底层/中层不参与 sharedBounds 飞行：只做收正（tilt 动画）+ 随层淡入淡出。
-                // 三张同时飞会让 overlay 里出现多个同尺寸副本互抢层级，落位瞬间撤副本就会"乱一下再跳"。
-                val m = Modifier
+                val m = if (folderScope != null && folderSharedScope != null) {
+                    with(folderSharedScope) {
+                        Modifier.sharedBounds(
+                            rememberSharedContentState(key = "folder-${previewBooks[2].id}"),
+                            animatedVisibilityScope = folderScope,
+                            enter = EnterTransition.None,
+                            exit = ExitTransition.None,
+                            zIndexInOverlay = 8f,
+                        )
+                    }
+                } else Modifier
                 // 退出（进文件夹）Visible→PostExit：16°→0；进入（返回）PreEnter→Visible：0→16°。
                 val tilt3 = if (folderScope != null) {
                     folderScope.transition.animateFloat(
@@ -826,8 +842,17 @@ private fun CollectionCard(
             }
             // 中层第二张：斜角同样随转场进度从 8° 平滑收正，与 sharedBounds 同节点。
             if (previewBooks.size >= 2) {
-                // 中层同样只做收正 + 淡出，不飞。
-                val m = Modifier
+                val m = if (folderScope != null && folderSharedScope != null) {
+                    with(folderSharedScope) {
+                        Modifier.sharedBounds(
+                            rememberSharedContentState(key = "folder-${previewBooks[1].id}"),
+                            animatedVisibilityScope = folderScope,
+                            enter = EnterTransition.None,
+                            exit = ExitTransition.None,
+                            zIndexInOverlay = 9f,
+                        )
+                    }
+                } else Modifier
                 val tilt2 = if (folderScope != null) {
                     folderScope.transition.animateFloat(
                         transitionSpec = { tween(220) }, label = "folderTilt2",
@@ -855,10 +880,7 @@ private fun CollectionCard(
                             animatedVisibilityScope = folderScope,
                             enter = EnterTransition.None,
                             exit = ExitTransition.None,
-                            // 只留一张飞：层级固定高于任何其它共享元素，绝不打平（打平就是"层级乱"的来源）
-                            zIndexInOverlay = 11f,
-                            // 飞行途中也保持圆角，落位时不会突然从直角变圆角
-                            clipInOverlayDuringTransition = OverlayClip(RoundedCornerShape(14.dp)),
+                            zIndexInOverlay = 10f,
                         )
                     }
                 } else Modifier
