@@ -1,6 +1,6 @@
 {
-  "code": 238,
-  "version": "0.1.238",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.238-20261126/YGComic-v0.1.238-release.apk",
-  "notes": "## 0.1.238\n\n### 修掉「只播第一段，第二段没声」\n\n- 真因：流式朗读续播下一段，是从**上一段自己的协程**里调进去的。`startNetworkAloud` 开头会 `networkSpeakJob?.cancel()`，而这个引用当时正指向\"自己\"，于是把自己取消了；紧接着上一段的 `catch(CancellationException)` 又执行 `releaseAloudTrack()`，把**新一段刚建好的 AudioTrack** 释放掉 —— 第二段就直接没声。\n- 修法：\n  - 续播前先摘掉 `networkSpeakJob` 引用，让上一段自然收尾，不再 cancel 自己；\n  - 异常兜底改成只释放本段自己的 AudioTrack（`if (aloudTrack === track)`），不再误杀下一段的音轨。\n\n### 顺带\n\n- 第一段仍是「从当前这一屏开头」开始，念完接着往下、自动翻页/续章的逻辑没动。\n"
+  "code": 239,
+  "version": "0.1.239",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.239-20261126/YGComic-v0.1.239-release.apk",
+  "notes": "## 0.1.239\n\n### 朗读按页切段，念到页底就翻页\n\n- 原来一整个段落算一个朗读任务：段落横跨两页时，它要一口气念完才换下一个任务，所以页面停在原页不动，你会觉得\"这一页的字都念完了还不翻\"。\n- 现在按「页 + 页内片段」切段：同一段落在第 1 页的部分是一段，翻到第 2 页的部分是另一段。念完当前页这段就进下一段，翻页跟着走。\n- 同时把高亮区间补上了段内起始偏移（`charStart`），按页拆分后高亮不会偏几个字。\n- 自动翻页判断改成按「段在章内的绝对位置」找页，段变了就 `animateScrollToPage` 过去，动画跟手指翻页一致。\n"
 }
