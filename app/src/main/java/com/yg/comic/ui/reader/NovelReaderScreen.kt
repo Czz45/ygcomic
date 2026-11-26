@@ -206,6 +206,8 @@ private fun NovelReaderContent(
     val switchMsg by vm.switchMsg.collectAsState()
     // 换源代数/恢复章：换源成功后 epoch 递增，用来强制重置分页状态并定位到恢复章
     val switchEpoch by vm.switchEpoch.collectAsState()
+    // 真正的换源计数（普通重开不递增）：章内进度恢复只认它，避免把"每次重开"当成换源而丢掉页码
+    val sourceSwitch by vm.sourceSwitch.collectAsState()
     val resumeIndex by vm.resumeIndex.collectAsState()
     val chapterReversed by vm.chapterReversed.collectAsState()
     val smartTocSort by vm.smartTocSort.collectAsState()
@@ -423,9 +425,9 @@ private fun NovelReaderContent(
     // 初始页：恢复进度时若同章则按「章内首字符偏移」反查所在页（对齐 legado durChapterPos，
     // 字号/行距/换屏改变页数后仍定位到同一处文本），否则第0页。
     // 换源(epoch 变化)后不从旧 savedProgress 恢复页码，直接从第0页开始看新源这一章。
-    val initialPage = remember(currentChapterIndex, pages, switchEpoch) {
+    val initialPage = remember(currentChapterIndex, pages, sourceSwitch, savedProgress?.pageIndex, savedProgress?.chapterOffset) {
         val sp = savedProgress
-        if (switchEpoch == 0 && sp != null && sp.pageIndex == currentChapterIndex && sp.chapterOffset > 0) {
+        if (sourceSwitch == 0 && sp != null && sp.pageIndex == currentChapterIndex && sp.chapterOffset > 0) {
             var p = 0
             for (i in pages.indices) {
                 if (pages[i].startOffset <= sp.chapterOffset) p = i else break
@@ -436,6 +438,11 @@ private fun NovelReaderContent(
             if (p == 0 && pages.isNotEmpty() && pages[0].startOffset > sp.chapterOffset) {
                 p = pages.indexOfFirst { it.startOffset >= sp.chapterOffset }.coerceAtLeast(0)
             }
+            android.util.Log.i(
+                "YGProgress",
+                "initPage ch=$currentChapterIndex off=${sp.chapterOffset} pages=${pages.size} " +
+                    "first=${pages.firstOrNull()?.startOffset} last=${pages.lastOrNull()?.startOffset} -> $p",
+            )
             p
         } else 0
     }
@@ -492,13 +499,14 @@ private fun NovelReaderContent(
     // 章内进度一次性恢复：pagerState/listState 的 remember key 不含 initialPage，
     // 进度异步晚到使 initialPage 变化时 pager 不会重建、停在第0页（用户症状"每次进去都是第一个页"）。
     // 这里在「进度 + 目录 + 分页」都就绪后主动定位一次；restoreKey 守门，避免用户后续翻页被反复拉回。
-    val restoreKey = Triple(savedProgress?.pageIndex, savedProgress?.chapterOffset, switchEpoch)
+    val restoreKey = Triple(savedProgress?.pageIndex, savedProgress?.chapterOffset, sourceSwitch)
     var progressRestored by remember(vm) { mutableStateOf(false) }
     LaunchedEffect(restoreKey, pages, displayPages.size) {
         if (progressRestored) return@LaunchedEffect
         val sp = savedProgress
-        if (sp == null || switchEpoch > 0 || pages.isEmpty() || currentChapterIndex != sp.pageIndex) return@LaunchedEffect
+        if (sp == null || sourceSwitch > 0 || pages.isEmpty() || currentChapterIndex != sp.pageIndex) return@LaunchedEffect
         val target = initialPage
+        android.util.Log.i("YGProgress", "restore ch=$currentChapterIndex target=$target cur=${pagerState.currentPage} restored=$progressRestored")
         if (target > 0 && pagerState.currentPage != target) {
             pagerState.scrollToPage(target)
             listState.scrollToItem(pageToPara(target))

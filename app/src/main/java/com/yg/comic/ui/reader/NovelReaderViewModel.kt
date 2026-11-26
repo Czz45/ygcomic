@@ -514,6 +514,7 @@ class NovelReaderViewModel(
                 savedIndex = (saved?.pageIndex ?: 0).coerceAtLeast(0)
             }
             _savedProgress.value = saved
+            android.util.Log.i("YGProgress", "read book=$bookId saved=$saved netBook=${repo.networkBook(bookId) != null}")
 
             val netBook = runCatching { repo.networkBook(bookId) }.getOrNull()
             if (netBook != null) {
@@ -582,6 +583,14 @@ class NovelReaderViewModel(
      */
     private val _switchEpoch = MutableStateFlow(0)
     val switchEpoch: StateFlow<Int> = _switchEpoch.asStateFlow()
+    /**
+     * 真正的「换源」代数：只有用户手动切源（switchSource）才 +1，普通进入/重开书本不动它。
+     * 章内进度恢复要用它来挡：换源后新源正文分页跟旧源不同，不能套用旧页码；
+     * 但正常重开必须恢复章内位置——所以不能再用 _switchEpoch 当开关（它每次 loadFromSource 都 +1，
+     * 会把普通重开也一并挡掉，表现为「章号对、永远回到这一章开头」）。
+     */
+    private val _sourceSwitch = MutableStateFlow(0)
+    val sourceSwitch: StateFlow<Int> = _sourceSwitch.asStateFlow()
     /** 切源/重建正文后要恢复到的章序号（=本次 loadFromSource 的 startIndex 夹取结果） */
     private val _resumeIndex = MutableStateFlow(0)
     val resumeIndex: StateFlow<Int> = _resumeIndex.asStateFlow()
@@ -771,6 +780,7 @@ class NovelReaderViewModel(
         }
         _sourceIndex.value = index
         netLoadGen++ // 作废旧窗口的后台加载
+        _sourceSwitch.value = _sourceSwitch.value + 1 // 真换源：本次不恢复旧源章内页码
         loadFromSource(origin.sourceJson, toc, origin.bookUrl, netStartIndex)
     }
 
@@ -1078,6 +1088,7 @@ class NovelReaderViewModel(
     /** 用户翻页后保存进度（章节索引 + 章内字符偏移） */
     fun saveProgress(page: NovelPage) {
         val key = "${page.chapterIndex}:${page.startOffset}"
+        android.util.Log.i("YGProgress", "save book=$bookId ch=${page.chapterIndex} off=${page.startOffset} key=$key")
         if (key == lastSavedKey) return
         lastSavedKey = key
         lastChapterIndex = page.chapterIndex // 换源后恢复到最近阅读章
