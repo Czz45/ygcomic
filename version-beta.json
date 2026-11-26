@@ -1,6 +1,6 @@
 {
-  "code": 235,
-  "version": "0.1.235",
-  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.235-20261126/YGComic-v0.1.235-release.apk",
-  "notes": "## YGComic 0.1.235\n\n### 朗读/试听改为流式，点下去就出声\n\n- 之前走非流式接口：必须整段合成完、拿到 200KB 音频，再交给 MediaPlayer，所以点完要等好一会儿。\n- 现在 MiMo TTS 走 `stream=true` + `format=pcm16`（24kHz 单声道），App 用 AudioTrack 边收边播：首包到达就出声。\n- 实测：同一句文本，整段流式传输 1.2 秒，首包 200ms 量级。\n- 收流过程中把 PCM 攒成标准 WAV 进缓存，下一段/二次播放直接命中缓存秒起。\n- 流式失败自动回退系统朗读，并说明原因；中途停止会取消请求、释放 AudioTrack，不留后台占用。\n\n### 试听有实时反馈了\n\n- 状态从「合成中…」→「已出声 · 首包 XXXms」→「播放中…」→「试听完成」，左侧有状态圆点，主按钮忙碌时变成「停止」。\n- 不会再出现点完干等着、以为没反应的情况。\n\n### 朗读设置页重排\n\n- 分块卡片：配置 / 引擎 / 服务 / 音色 / 输出 / 试听，标题分组、留白分隔，不再是一长条挤在一起。\n- 选中态统一为中性实心块（去掉整块品牌蓝），选项自动换行不挤成条。\n- 配置卡上直接显示「引擎 · 服务商 · 音色 · 当前使用」，一眼知道这套是什么。\n\n### 音色按官方文档补齐\n\n- 官方预置音色 9 个全部可点选，并标注语言性别：`mimo_default`（跟随集群）、冰糖/茉莉（中文女）、苏打/白桦（中文男）、Mia/Chloe（英文女）、Milo/Dean（英文男）。\n"
+  "code": 236,
+  "version": "0.1.236",
+  "apk": "https://github.com/Czz45/ygcomic/releases/download/ygcomic-v0.1.236-20261126/YGComic-v0.1.236-release.apk",
+  "notes": "## 0.1.236\n\n### 修好了：流式试听在真机上必崩\n\n- 报错 `Element class kotlinx.serialization.json.JsonNull is not a JsonObject` 的真因：服务端流式分片里用不到的字段全是字面 `null`（`\"audio\":null`、`\"completion\":null`），旧代码用 `.jsonObject` 强取，第一片就抛异常。现在所有 JSON 取值统一走安全转换，`null` 字段直接跳过，不再中断。\n- 非流式返回也一并做了同样的安全处理，`choices` / `message` / `audio` 缺字段时给中文提示而不是抛 Kotlin 异常名。\n\n### 朗读设置页整体按 Miuix 重做\n\n- 去掉全部自绘组件（手搓圆角块、黑底选中态、状态圆点、自拼滑块），改用项目里统一的 Miuix 原生控件：\n  - 分组用 `Card`，行用 `BasicComponent`（标题 + 副标题 + 尾部操作），分隔用 `HorizontalDivider`；\n  - 引擎 / 语速 / 服务预设 / 朗读风格 / 音频格式 / 缓存段落数统一用 `TabRow` 分段控件；\n  - 音色改成 9 行单选列表（`BasicComponent` + `RadioButton`），每行标出语言与性别；\n  - 音量用原生 `Slider`，试听按钮用原生 `Button`（主色）。\n- 观感与「设置」主页面一致，不再出现一套自己的配色和圆角。\n\n### 提示更实在\n\n- 试听状态直接跟在按钮下面：合成中 / 首包 xx ms / 播放中 / 试听完成 / 失败原因。\n- 服务预设说明改成卡片里的一行摘要，不再是一小块自绘标签。\n"
 }
