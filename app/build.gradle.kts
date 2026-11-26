@@ -12,8 +12,8 @@ android {
         applicationId = "com.yg.comic"
         minSdk = 26
         targetSdk = 35
-        versionCode = 212
-        versionName = "0.1.212"
+        versionCode = 220
+        versionName = "0.1.220"
         vectorDrawables { useSupportLibrary = true }
         ndk {
             // 发布包只带真机 arm64；本地模拟器实测时传 -PincludeEmulatorAbi 加回 x86_64。

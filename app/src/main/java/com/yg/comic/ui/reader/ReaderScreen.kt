@@ -97,7 +97,7 @@ fun ReaderScreen(
     val context = LocalContext.current
     val view = LocalView.current
     val scope = rememberCoroutineScope()
-    val imageCache = remember { ImageCache(context) }
+    val imageCache = ImageCache.get(context)
 
     val pages by vm.pages.collectAsState()
     val current by vm.current.collectAsState()

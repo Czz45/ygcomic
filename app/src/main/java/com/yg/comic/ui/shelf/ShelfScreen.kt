@@ -3,6 +3,9 @@ package com.yg.comic.ui.shelf
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.EnterExitState
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.togetherWith
 import androidx.compose.animation.core.Animatable
@@ -224,6 +227,10 @@ fun ShelfScreen(
                     AnimatedContent(
                         targetState = layer,
                         transitionSpec = { fadeIn(tween(220)) togetherWith fadeOut(tween(220)) },
+                        // 只在文件夹层级真正切换时才转场：books/collections 是异步加载的，
+                        // 先到的那个让 layer 内容变化、folderId 却没变（首次进 APP 就是这种），
+                        // 若按整个 layer 判等会误触发整页淡入 + tilt 旋转的"小动画"。
+                        contentKey = { it.folderId },
                         label = "folderFly",
                     ) { targetLayer ->
                         val acScope = this  // AnimatedContent 的 scope，供 folder-* sharedBounds 配对
@@ -613,6 +620,12 @@ private fun BookCard(
             Modifier.sharedBounds(
                 rememberSharedContentState(key = "folder-${book.id}"),
                 animatedVisibilityScope = folderScope,
+                // 首次进 APP 时 sharedBounds 单独出现（无配对端）会播默认 enter 缩放/淡入 → "小动画"，
+                // 关掉 enter/exit 只留 bounds 飞行；zIndexInOverlay 抬高，飞行封面盖在普通书卡之上，
+                // 落位转场结束即不再渲染进 overlay，自动恢复正常层级。只作用于 folder-* 这套。
+                enter = EnterTransition.None,
+                exit = ExitTransition.None,
+                zIndexInOverlay = 10f,
             )
         }
     } else Modifier
@@ -766,10 +779,12 @@ private fun CollectionCard(
     folderSharedScope: SharedTransitionScope? = null,
 ) {
     // 取消外层圆角矩形底框：只保留封面与标题，整块仍可点击/长按。
+    // 外层不再 clip：斜叠封面收回落位时可略微超出网格边界，
+    // 否则飞行结束回到布局树那一刻会被裁到格子边框、看着像突然被切掉。
+    // 每张封面自己仍有圆角 clip，外观不受影响。
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(14.dp))
             .pointerInput(Unit) {
                 detectTapGestures(onTap = { onClick() }, onLongPress = { onLongPress() })
             },
@@ -778,49 +793,72 @@ private fun CollectionCard(
         // 每张封面各自绑 folder-${book.id} 共享元素（用 AnimatedContent 的 scope），
         // 与进入文件夹后书列表前三项的同 key 封面配对，点击时飞到对应位置。
         Box(Modifier.fillMaxWidth().aspectRatio(0.72f)) {
-            // 最底层第三张：旋转最大、偏移最多
+            // 最底层第三张：旋转最大、偏移最多。
+            // 斜角随 folder 转场进度从 16° 平滑收正，和 sharedBounds 绑在同一个图片节点上，
+            // 飞出时 overlay 才能带着斜角一起飞，到落位（Visible→PostExit 走完）才归 0。
             if (previewBooks.size >= 3) {
                 val m = if (folderScope != null && folderSharedScope != null) {
                     with(folderSharedScope) {
                         Modifier.sharedBounds(
                             rememberSharedContentState(key = "folder-${previewBooks[2].id}"),
                             animatedVisibilityScope = folderScope,
+                            enter = EnterTransition.None,
+                            exit = ExitTransition.None,
+                            zIndexInOverlay = 10f,
                         )
                     }
                 } else Modifier
+                // 退出（进文件夹）Visible→PostExit：16°→0；进入（返回）PreEnter→Visible：0→16°。
+                val tilt3 = if (folderScope != null) {
+                    folderScope.transition.animateFloat(
+                        transitionSpec = { tween(220) }, label = "folderTilt3",
+                    ) { st -> if (st == EnterExitState.Visible) 16f else 0f }
+                } else null
                 Box(
-                    Modifier.matchParentSize()
-                        .graphicsLayer(rotationZ = 16f, translationX = 6f, translationY = 6f)
+                    m.matchParentSize()
+                        .graphicsLayer {
+                            rotationZ = tilt3?.value ?: 16f
+                            translationX = 6f
+                            translationY = 6f
+                        }
                         .shadow(8.dp, RoundedCornerShape(14.dp), ambientColor = Color.Black.copy(alpha = 0.3f))
                         .clip(RoundedCornerShape(14.dp))
                         .background(MiuixTheme.colorScheme.surfaceVariant),
                 ) {
                     AsyncImage(
                         model = previewBooks[2].coverPath, contentDescription = null, contentScale = ContentScale.Crop,
-                        modifier = m.fillMaxSize(),
+                        modifier = Modifier.fillMaxSize(),
                     )
                 }
             }
-            // 中层第二张
+            // 中层第二张：斜角同样随转场进度从 8° 平滑收正，与 sharedBounds 同节点。
             if (previewBooks.size >= 2) {
                 val m = if (folderScope != null && folderSharedScope != null) {
                     with(folderSharedScope) {
                         Modifier.sharedBounds(
                             rememberSharedContentState(key = "folder-${previewBooks[1].id}"),
                             animatedVisibilityScope = folderScope,
+                            enter = EnterTransition.None,
+                            exit = ExitTransition.None,
+                            zIndexInOverlay = 10f,
                         )
                     }
                 } else Modifier
+                val tilt2 = if (folderScope != null) {
+                    folderScope.transition.animateFloat(
+                        transitionSpec = { tween(220) }, label = "folderTilt2",
+                    ) { st -> if (st == EnterExitState.Visible) 8f else 0f }
+                } else null
                 Box(
-                    Modifier.matchParentSize()
-                        .graphicsLayer(rotationZ = 8f)
+                    m.matchParentSize()
+                        .graphicsLayer { rotationZ = tilt2?.value ?: 8f }
                         .shadow(8.dp, RoundedCornerShape(14.dp), ambientColor = Color.Black.copy(alpha = 0.3f))
                         .clip(RoundedCornerShape(14.dp))
                         .background(MiuixTheme.colorScheme.surfaceVariant),
                 ) {
                     AsyncImage(
                         model = previewBooks[1].coverPath, contentDescription = null, contentScale = ContentScale.Crop,
-                        modifier = m.fillMaxSize(),
+                        modifier = Modifier.fillMaxSize(),
                     )
                 }
             }
@@ -831,6 +869,9 @@ private fun CollectionCard(
                         Modifier.sharedBounds(
                             rememberSharedContentState(key = "folder-${previewBooks[0].id}"),
                             animatedVisibilityScope = folderScope,
+                            enter = EnterTransition.None,
+                            exit = ExitTransition.None,
+                            zIndexInOverlay = 10f,
                         )
                     }
                 } else Modifier

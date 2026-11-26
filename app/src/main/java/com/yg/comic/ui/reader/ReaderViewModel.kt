@@ -369,12 +369,25 @@ class ReaderViewModel(
         _loadMessage.value = if (_pages.value.isEmpty()) "本章图片加载失败，可换源重试" else null
     }
 
+    companion object {
+        /**
+         * 进程级图址缓存：ViewModel 每次进阅读器都重建，此前每次都联网解析图片地址 → "每次进去都重新加载"。
+         * key 含源 JSON + 章节 URL，换源不会串；只缓存解析成功的非空结果，失败不固化以便下次重试。
+         * 进程被杀即清空，不会永久陈旧。此缓存只存图址字符串，超分落盘缓存 SrDiskCache 不受影响。
+         */
+        private val imageUrlCache = ConcurrentHashMap<String, List<String>>()
+    }
+
     private suspend fun fetchChapterImages(ch: SourceChapter): List<String> = withContext(Dispatchers.IO) {
-        runCatching {
+        val cacheKey = "$netSourceJson|${ch.url}"
+        imageUrlCache[cacheKey]?.let { return@withContext it }
+        val images = runCatching {
             withTimeout(25_000L) {
                 SourceRepository.providerFor(netSourceJson).content(netSourceJson, ch.url).getOrNull()?.images.orEmpty()
             }
         }.getOrDefault(emptyList()).filter { it.isNotBlank() }
+        if (images.isNotEmpty()) imageUrlCache[cacheKey] = images
+        images
     }
 
     /** 滑到已加载章节末尾时往后追加两章（只往后长，当前位置不会跳）。 */

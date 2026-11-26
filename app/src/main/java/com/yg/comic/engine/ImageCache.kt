@@ -37,6 +37,17 @@ class ImageCache(context: Context, maxKb: Int = (Runtime.getRuntime().maxMemory(
     fun clear() = memory.evictAll()
 
     companion object {
+        /**
+         * 进程级单例：每次进阅读器 Composable 重建，若每次 new 一个 ImageCache，内存 LRU 随退出被丢弃，
+         * 表现的"每次进去都重新加载"。改成进程级复用，命中常驻内存。
+         * 用 applicationContext，避免单例持有 Activity。
+         */
+        @Volatile
+        private var instance: ImageCache? = null
+        fun get(context: Context): ImageCache = instance ?: synchronized(this) {
+            instance ?: ImageCache(context.applicationContext).also { instance = it }
+        }
+
         /** 只算缓存目录大小，绝不碰用户原始导入文件 */
         fun cacheDirSize(dir: File): Long = dir.walkTopDown().filter { it.isFile }.map { it.length() }.sum()
     }

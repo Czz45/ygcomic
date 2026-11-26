@@ -3,6 +3,8 @@ package com.yg.comic.ui.reader
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
@@ -27,6 +29,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshotFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -118,6 +121,74 @@ fun NovelReaderScreen(
     sharedTransitionScope: SharedTransitionScope? = null,
     animatedVisibilityScope: AnimatedVisibilityScope? = null,
 ) {
+    // 封面展开 container transform：sharedBounds 的 key 绑在从首帧就在的稳定共享层上，
+    // 书架小封面 → 全屏这段由 Compose 的 bounds 插值自动完成。
+    // 飞行期发白/发灰的根因：小说端共享层里只有「转圈/透明正文」没有实色内容，
+    // 飞行时 overlay 里就透出退场书架和 Scaffold 的浅色底 → 整屏发白；
+    // 而之前把阅读主题色画在共享节点上，又变成盖住封面的黑灰/白层。
+    // 正解（对齐漫画）：共享层里放一张和书架同 key 的封面图铺满，飞行中 overlay 里就是封面在放大；
+    // 正文照常后台组合加载（满足"先加载好"），飞完再淡入盖在封面上。
+    val outerNs by vm.settings.collectAsState()
+    val outerBg = Color(outerNs.background)
+    val outerShared = if (sharedTransitionScope != null && animatedVisibilityScope != null) {
+        with(sharedTransitionScope) {
+            Modifier.sharedBounds(
+                rememberSharedContentState(key = "cover-${bookId}"),
+                animatedVisibilityScope = animatedVisibilityScope,
+                clipInOverlayDuringTransition = OverlayClip(RoundedCornerShape(14.dp)),
+            )
+        }
+    } else Modifier
+    // 封面的本地路径（和书架 coverSharedModifier 同一个 model，命中同一份 Coil 缓存）
+    var coverPath by remember(bookId) { mutableStateOf<String?>(null) }
+    LaunchedEffect(bookId) {
+        coverPath = repo.books.first()
+            .firstOrNull { it.id == bookId }?.coverPath
+    }
+    // 飞完(≈NAV_MS 240ms)再做交叉淡入：封面图淡出、阅读主题底和正文淡入。
+    // 根容器固定不透明黑底（和漫画一致、不随设置变，杜绝浅色 Scaffold 透出的白和深灰→白突变），
+    // 它在共享节点之外、不进 overlay，不会盖住飞行中的封面。
+    val reveal = remember { Animatable(0f) }
+    LaunchedEffect(Unit) {
+        kotlinx.coroutines.delay(200)
+        reveal.animateTo(1f, animationSpec = tween(200))
+    }
+    Box(Modifier.fillMaxSize().background(Color.Black)) {
+        // 阅读主题底：共享节点之外，飞完淡入，把设置异步读到的「深灰→白」变化藏进淡入过程。
+        Box(
+            Modifier
+                .fillMaxSize()
+                .graphicsLayer { alpha = reveal.value }
+                .background(outerBg)
+        )
+        // 共享层：从首帧绑 key 作封面飞行落点，overlay 里只有它。
+        // 对齐漫画那套丝滑做法：enter 端只放不透明黑底，不另画一张封面图。
+        // 之前这里额外画了和书架同款的封面图，和 exit 端正在 fadeOut 的书架封面重叠，
+        // 看着就是「两个封面一起飞、且有一个不淡化」。现在书架封面飞过来淡出、黑底承接，
+        // 正文在黑底上渐显，飞行期只剩一个正确的封面放大动画。
+        Box(outerShared.fillMaxSize().clip(RoundedCornerShape(14.dp)).background(Color.Black)) {
+            // 正文飞行期照常组合加载、alpha=0 不可见，落位后淡入盖在黑底上。
+            Box(Modifier.fillMaxSize().graphicsLayer { alpha = reveal.value }) {
+                NovelReaderContent(repo, store, bookId, onBack, onOpenBook, onOpenTtsSettings, vm)
+            }
+        }
+    }
+}
+
+@OptIn(
+    androidx.compose.foundation.layout.ExperimentalLayoutApi::class,
+    androidx.compose.foundation.ExperimentalFoundationApi::class,
+)
+@Composable
+private fun NovelReaderContent(
+    repo: BookRepository,
+    store: SettingsStore,
+    bookId: Long,
+    onBack: () -> Unit,
+    onOpenBook: (Long) -> Unit,
+    onOpenTtsSettings: () -> Unit,
+    vm: NovelReaderViewModel,
+) {
     val density = LocalDensity.current
     val configuration = LocalConfiguration.current
     val rawText by vm.rawText.collectAsState()
@@ -183,7 +254,6 @@ fun NovelReaderScreen(
 
     val paged = ns.animation != PageAnimation.SCROLL
 
-    val bg = Color(ns.background)
     val textColor = Color(ns.textColor)
     val fontWeight = when (ns.fontWeight) {
         NovelWeight.MEDIUM -> FontWeight.Normal
@@ -335,21 +405,8 @@ fun NovelReaderScreen(
         }
     }
 
-    // 封面展开共享元素：与书架封面绑同一个 key，小说也有飞行；加载态与正文态都绑，保证配对稳定。
-    // sharedBounds/OverlayClip 是 SharedTransitionScope 的成员，必须 with(scope) 内调用，不能顶层 import。
-    val novelSharedModifier = if (sharedTransitionScope != null && animatedVisibilityScope != null) {
-        with(sharedTransitionScope) {
-            Modifier.sharedBounds(
-                rememberSharedContentState(key = "cover-${bookId}"),
-                animatedVisibilityScope = animatedVisibilityScope,
-                // 飞行全程保持封面圆角，与书架端、漫画端一致。
-                clipInOverlayDuringTransition = OverlayClip(RoundedCornerShape(14.dp)),
-            )
-        }
-    } else Modifier
-
     if (!loaded || pages.isEmpty()) {
-        Box(novelSharedModifier.fillMaxSize().clip(RoundedCornerShape(14.dp)).background(bg), contentAlignment = Alignment.Center) {
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             if (!loaded) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     CircularProgressIndicator()
@@ -619,10 +676,7 @@ fun NovelReaderScreen(
     }
 
     Box(
-        novelSharedModifier
-            .fillMaxSize()
-            .clip(RoundedCornerShape(14.dp))
-            .background(bg)
+        Modifier.fillMaxSize()
             .pointerInput(Unit) {
                 detectTapGestures(onTap = { chromeVisible = !chromeVisible })
             },
