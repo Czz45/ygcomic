@@ -50,6 +50,7 @@ fun SettingsScreen(
     val scale by vm.scale.collectAsState()
     val sensitivity by vm.sensitivity.collectAsState()
     val cacheLimit by vm.cacheLimit.collectAsState()
+    val betaChannel by vm.betaChannel.collectAsState()
     val sources by vm.sources.collectAsState()
     val cacheSize by vm.cacheSize.collectAsState()
     val updateState by vm.updateState.collectAsState()
@@ -327,9 +328,21 @@ fun SettingsScreen(
             item { SectionTitle("关于与更新") }
             item {
                 Card(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 4.dp)) {
+                    SwitchPreference(
+                        checked = betaChannel,
+                        onCheckedChange = { vm.setBetaChannel(it) },
+                        title = "测试版更新通道",
+                        summary = if (betaChannel) "已开启：检测最新测试版（含 prerelease）"
+                        else "已关闭：只检测正式版本",
+                        startAction = { PrefIcon(Icons.Filled.Science) },
+                    )
+                }
+            }
+            item {
+                Card(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 4.dp)) {
                     ArrowPreference(
                         title = "检查更新",
-                        summary = "当前 v${vm.versionName} (${vm.versionCode}) · 点击检测新版本",
+                        summary = "当前 v${vm.versionName} (${vm.versionCode}) · 检测${if (betaChannel) "测试版" else "正式版"} · 点击检测",
                         startAction = { PrefIcon(Icons.Filled.SystemUpdate) },
                         onClick = { vm.checkUpdate() },
                     )
@@ -389,6 +402,13 @@ fun SettingsScreen(
         is SettingsViewModel.UpdateState.Downloading -> OverlayDialog(
             show = true, title = "正在下载", summary = "已下载 ${st.progress}%",
             onDismissRequest = {},
+        ) {}
+        is SettingsViewModel.UpdateState.NoneAvailable -> OverlayDialog(
+            show = true,
+            title = if (st.beta) "暂无可用测试版" else "暂无正式版",
+            summary = if (st.beta) "这个通道里目前没有任何版本。"
+            else "目前还没有发布正式版。想第一时间拿到新版本，可以把上面的「测试版更新通道」打开。",
+            onDismissRequest = { vm.resetUpdate() },
         ) {}
         is SettingsViewModel.UpdateState.ReadyToInstall,
         is SettingsViewModel.UpdateState.Idle -> {}

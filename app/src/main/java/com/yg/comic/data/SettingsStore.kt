@@ -31,6 +31,8 @@ class SettingsStore(private val context: Context) {
         val FILTER = stringPreferencesKey("filter")
         val SORT = stringPreferencesKey("sort")
         val AUTO_SORT_ENABLED = booleanPreferencesKey("auto_sort_enabled")
+    // 更新通道：false（默认）= 只检测正式版；true = 也检测测试版（prerelease）
+    val BETA_CHANNEL = booleanPreferencesKey("beta_channel")
         // 漫画超分
         val SR_ENABLED = booleanPreferencesKey("sr_enabled")
         val SR_MODEL = stringPreferencesKey("sr_model")
@@ -194,6 +196,10 @@ class SettingsStore(private val context: Context) {
     /** 智能排序总开关：按书源质量（网络状态/健康度/内容质量）自动排序，默认开启。 */
     val autoSortEnabled: Flow<Boolean> = context.dataStore.data.map { it[Keys.AUTO_SORT_ENABLED] ?: true }
     suspend fun setAutoSortEnabled(v: Boolean) = context.dataStore.edit { it[Keys.AUTO_SORT_ENABLED] = v }
+
+    /** 测试版更新通道，默认关闭：关闭时只检测正式版，打开后连测试版（prerelease）一起检测。 */
+    val betaChannel: Flow<Boolean> = context.dataStore.data.map { it[Keys.BETA_CHANNEL] ?: false }
+    suspend fun setBetaChannel(v: Boolean) = context.dataStore.edit { it[Keys.BETA_CHANNEL] = v }
 
     /** 漫画超分总开关，默认关闭（需用户主动开启并下载模型）。作用于所有漫画类型：网络 / 本地图片 / PDF 漫画。 */
     val srEnabled: Flow<Boolean> = context.dataStore.data.map { it[Keys.SR_ENABLED] ?: false }

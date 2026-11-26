@@ -26,15 +26,18 @@ object UpdateManager {
     // 静态 version.json 清单只是加速镜像，且 @main CDN 有缓存陈旧风险，仅作 API 不可达时的兜底。
     // checkLatest 会并发请求所有渠道、按此优先级取第一个成功结果，不再串行等待 → 快。
     private const val API_URL = "https://api.github.com/repos/$REPO/releases/latest"
-    private fun manifestUrls(): List<String> {
+    // 测试通道：拉最近若干个 release（含 prerelease），取最新的那个
+    private const val API_LIST_URL = "https://api.github.com/repos/$REPO/releases?per_page=10"
+    private fun manifestUrls(beta: Boolean): List<String> {
         val ts = System.currentTimeMillis()
-        val raw = "https://raw.githubusercontent.com/Czz45/ygcomic/main/version.json"
+        val file = if (beta) "version-beta.json" else "version.json"
+        val raw = "https://raw.githubusercontent.com/Czz45/ygcomic/main/$file"
         return listOf(
             "$raw?t=$ts",
             "https://ghfast.top/$raw?t=$ts",
             "https://ghproxy.net/$raw?t=$ts",
             "https://gh-proxy.com/$raw?t=$ts",
-            "https://cdn.jsdelivr.net/gh/Czz45/ygcomic@main/version.json?t=$ts",
+            "https://cdn.jsdelivr.net/gh/Czz45/ygcomic@main/$file?t=$ts",
         )
     }
     // 单渠道超时收紧到 6s：并发下最慢也就 6s，不再叠加到几十秒。
@@ -85,6 +88,26 @@ object UpdateManager {
         return Release(version, notes, apkUrl, size)
     }
 
+    /** 测试通道：API 返回 release 数组，按发布时间取第一个带 APK 的非草稿版本（含 prerelease）。 */
+    private fun parseReleaseList(text: String): Release? {
+        val arr = json.parseToJsonElement(text).jsonArray
+        for (el in arr) {
+            val obj = el.jsonObject
+            if (obj["draft"]?.jsonPrimitive?.content?.toBooleanStrictOrNull() == true) continue
+            val version = Regex("v(\\d+\\.\\d+\\.\\d+)")
+                .find(obj["tag_name"]?.jsonPrimitive?.content.orEmpty())?.groupValues?.get(1) ?: continue
+            val apkAsset = obj["assets"]?.jsonArray?.firstOrNull { a ->
+                a.jsonObject["name"]?.jsonPrimitive?.content?.endsWith(".apk", ignoreCase = true) == true
+            }?.jsonObject ?: continue
+            val apkUrl = apkAsset["browser_download_url"]?.jsonPrimitive?.content ?: continue
+            if (!apkUrl.startsWith("https://")) continue
+            val notes = obj["body"]?.jsonPrimitive?.content.orEmpty()
+            val size = (apkAsset["size"]?.jsonPrimitive?.content?.toLongOrNull() ?: 0L) / 1024f / 1024f
+            return Release(version, notes, apkUrl, size)
+        }
+        return null
+    }
+
     /** 静态 version.json 清单解析成 Release。 */
     private fun parseManifest(text: String): Release? {
         val o = json.parseToJsonElement(text).jsonObject
@@ -98,27 +121,45 @@ object UpdateManager {
     }
 
     /**
-     * 检测最新版本：官方 API 优先，静态清单兜底；所有渠道并发请求，按优先级取第一个成功结果。
-     * 并发是"快"的关键——不再串行叠加每个渠道的超时；官方 API 一开始就同时发出，通的瞬间即可返回。
+     * 检测最新版本。
+     * beta=false（默认）：只认正式版——用 releases/latest（GitHub 天然排除 prerelease）+ version.json 清单。
+     * beta=true：连测试版一起认——用 releases 列表取最新一条（含 prerelease）+ version-beta.json 清单。
+     * 所有渠道并发请求，按优先级取第一个成功结果。
      */
-    suspend fun checkLatest(): Release = withContext(Dispatchers.IO) {
+    suspend fun checkLatest(beta: Boolean = false): Release? = withContext(Dispatchers.IO) {
         data class Source(val label: String, val fetch: suspend () -> Release?)
         val sources = mutableListOf<Source>()
-        sources += Source("GitHub 官方") { parseRelease(get(API_URL, CHECK_TIMEOUT)) }
-        manifestUrls().forEachIndexed { i, url ->
+        sources += if (beta) {
+            Source("GitHub 官方(含测试版)") { parseReleaseList(get(API_LIST_URL, CHECK_TIMEOUT)) }
+        } else {
+            Source("GitHub 官方") { parseRelease(get(API_URL, CHECK_TIMEOUT)) }
+        }
+        manifestUrls(beta).forEachIndexed { i, url ->
             sources += Source("清单${i + 1}") { parseManifest(get(url, CHECK_TIMEOUT)) }
         }
-        // 全部同时发出
-        val deferred = sources.map { s -> async { try { s.fetch() } catch (e: Exception) { null } } }
+        // 全部同时发出：结果带上"渠道本身是否可达"，用来区分「网络全挂」和「确实没有这个版本」
+        val deferred = sources.map { s ->
+            async {
+                runCatching { s.fetch() }.fold(
+                    onSuccess = { rel -> Pair(rel, true) },
+                    onFailure = { Pair(null, false) },
+                )
+            }
+        }
         var lastErr = "未知错误"
+        var anyReachable = false
         for ((i, d) in deferred.withIndex()) {
-            val rel = d.await()
+            val (rel, reachable) = d.await()
             if (rel != null) {
                 android.util.Log.i("YGUpdate", "命中渠道=${sources[i].label} 版本=${rel.version}")
                 return@withContext rel
             }
+            // 渠道通了但没有任何版本（例如仓库里压根没有正式版，releases/latest 返回 404）
+            if (reachable) anyReachable = true
             lastErr = "${sources[i].label} 不可用"
         }
+        // 有渠道可达却都解析不出 Release → 确实没有可用版本（例如当前仓库没有正式版）
+        if (anyReachable) return@withContext null
         throw CheckException(lastErr)
     }
 

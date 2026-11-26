@@ -23,6 +23,9 @@ class SettingsViewModel(
     val sensitivity = store.globalReader.map { it.sensitivity }.stateIn(viewModelScope, SharingStarted.Eagerly, 1f)
     val cacheLimit = store.cacheLimitMb.stateIn(viewModelScope, SharingStarted.Eagerly, 512)
     val autoSortEnabled = store.autoSortEnabled.stateIn(viewModelScope, SharingStarted.Eagerly, true)
+    // 测试版更新通道（默认关：只检测正式版）
+    val betaChannel = store.betaChannel.stateIn(viewModelScope, SharingStarted.Eagerly, false)
+    fun setBetaChannel(v: Boolean) = viewModelScope.launch { store.setBetaChannel(v) }
     val sources = repo.sourceFolders.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     private val _cacheSize = MutableStateFlow(0L)
@@ -38,6 +41,8 @@ class SettingsViewModel(
         data object Checking : UpdateState
         data class Found(val release: UpdateManager.Release) : UpdateState
         data object UpToDate : UpdateState
+        /** 通道里没有任何可用版本（目前仓库就没有正式版） */
+        data class NoneAvailable(val beta: Boolean) : UpdateState
         data class Failed(val message: String) : UpdateState
         data class Downloading(val progress: Int) : UpdateState
         data class ReadyToInstall(val path: String) : UpdateState
@@ -50,10 +55,16 @@ class SettingsViewModel(
 
     fun checkUpdate() = viewModelScope.launch {
         _updateState.value = UpdateState.Checking
+        val beta = betaChannel.value
         val release = try {
-            UpdateManager.checkLatest()
+            UpdateManager.checkLatest(beta = beta)
         } catch (e: UpdateManager.CheckException) {
             _updateState.value = UpdateState.Failed("检测失败：${e.message}")
+            return@launch
+        }
+        if (release == null) {
+            // 该通道里一个版本都没有（当前仓库确实没有正式版）
+            _updateState.value = UpdateState.NoneAvailable(beta)
             return@launch
         }
         _updateState.value = if (UpdateManager.isNewer(release.version, versionName))
